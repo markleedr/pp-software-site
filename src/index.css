@@ -1,0 +1,67 @@
+/* Montserrat — the marketing personality lead. Loaded self-hosted via @fontsource. */
+@import '@fontsource/montserrat/500.css';
+@import '@fontsource/montserrat/700.css';
+@import '@fontsource/montserrat/800.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Surface A — marketing brand (brand guidelines v2025.1) */
+    --background: 0 0% 100%; /* white */
+    --foreground: 0 0% 0%; /* #000000 — headings, maximum contrast */
+
+    --muted: 0 0% 96%; /* #F5F5F5 — soft surfaces, section bands */
+    --muted-foreground: 0 0% 23%; /* #3A3A3A — charcoal, primary body text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --panel: 0 0% 0%; /* near-black dark panels, e.g. CTA band */
+    --panel-foreground: 0 0% 100%;
+
+    --primary: 50 100% 50%; /* #FFD600 — bright yellow, the only chromatic note */
+    --primary-foreground: 0 0% 0%; /* yellow always carries dark text, never light */
+
+    --border: 0 0% 88%;
+    --ring: 50 100% 50%;
+
+    --radius: 0.375rem; /* 6px — inputs, chips, buttons */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  /* Display headings — ExtraBold, lowercase, tight tracking, trailing period.
+     Reserved for marketing display headings only, per brand guidelines §08. */
+  .display {
+    font-weight: 800;
+    letter-spacing: -0.028em;
+    line-height: 0.98;
+    text-transform: lowercase;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
