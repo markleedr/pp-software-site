@@ -1,16 +1,24 @@
+import { Check } from 'lucide-react'
 import { ButtonLink } from '@/components/Button'
 import { Reveal } from '@/components/Reveal'
 
 const DISCOVERY_URL = 'https://www.projectprofile.agency/discovery'
 
-const INDIVIDUAL_PRICES = [
-  { name: 'Launch Planner', price: '$49/mo' },
-  { name: 'Content Proof', price: '$224/mo' },
-  { name: 'Ad Proof', price: '$224/mo' },
-  { name: 'Conversion Pages', price: '$249/mo' },
-  { name: 'Campaign Report', price: 'from $449/mo' },
-  { name: 'Lead Reactivation', price: 'own pricing' },
+const SUITE_TOOLS = [
+  'Launch Planner',
+  'Content Proof',
+  'Ad Proof',
+  'Conversion Pages',
+  'Campaign Report',
+  'Lead Reactivation',
 ]
+
+// The five bundled tools' own per-tool prices (Launch Planner $49, Content
+// Proof $224, Ad Proof $224, Conversion Pages $249, Campaign Report from
+// $449 — Lead Reactivation isn't in the bundle) sum to $1,195/mo. Bundle is
+// priced below that so "cheaper than buying individually" is actually true.
+const BUNDLE_PRICE = 899
+const INDIVIDUAL_TOTAL = 1195
 
 export function Pricing() {
   return (
@@ -34,10 +42,10 @@ export function Pricing() {
                 Start with one, add more as the project needs them.
               </p>
               <ul className="mt-6 space-y-2.5 flex-1">
-                {INDIVIDUAL_PRICES.map((item) => (
-                  <li key={item.name} className="flex items-baseline justify-between text-sm border-b border-border pb-2.5">
-                    <span className="font-medium text-foreground">{item.name}</span>
-                    <span className="text-muted-foreground">{item.price}</span>
+                {SUITE_TOOLS.map((name) => (
+                  <li key={name} className="flex items-center justify-between text-sm border-b border-border pb-2.5">
+                    <span className="font-medium text-foreground">{name}</span>
+                    <Check size={18} className="shrink-0 text-green-600" strokeWidth={2.5} />
                   </li>
                 ))}
               </ul>
@@ -58,9 +66,12 @@ export function Pricing() {
                 Lead Reactivation isn't part of the bundle; add it separately if you need it.
               </p>
               <div className="mt-6 flex items-baseline gap-3">
-                <span className="font-extrabold leading-none text-3xl sm:text-4xl">$TBA</span>
+                <span className="font-extrabold leading-none text-3xl sm:text-4xl">${BUNDLE_PRICE}</span>
                 <span className="text-sm text-white/60">per month, for all five tools</span>
               </div>
+              <p className="mt-2 text-sm text-white/50">
+                ${INDIVIDUAL_TOTAL - BUNDLE_PRICE} less than buying them separately (from ${INDIVIDUAL_TOTAL.toLocaleString()}/mo)
+              </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {/* TODO: point at the real contact flow once Mark confirms it. */}
                 <ButtonLink href="#" variant="primary">

@@ -182,8 +182,9 @@ src/
                                    # continuously scrolling (CSS marquee) track — see Known gaps
     WhyBlock.tsx                  # "stop renting access to your own data."
     Phases.tsx                    # six expanded product sections grouped under 4 phase headlines — see above
-    Pricing.tsx                   # "two ways to buy" — individually (real per-tool prices) vs.
-                                   # the full-suite bundle (5 tools, monthly subscription, $TBA)
+    Pricing.tsx                   # "two ways to buy" — individually (tool list, green ticks,
+                                   # no prices shown) vs. the full-suite bundle (5 tools,
+                                   # monthly subscription, $899/mo — see Known gaps)
 ```
 
 ### AppSwitcher note
@@ -238,15 +239,22 @@ deployment, check that in the dashboard before assuming the code is broken.
 
 ## Known gaps — confirm with Mark before this ships
 
-1. **Individual tool pricing is real** (Launch Planner $49/mo, Content Proof $224/mo, Ad
-   Proof $224/mo, Conversion Pages $249/mo, Campaign Report from $449/mo, Lead Reactivation
-   priced on its own site). **The full-suite bundle is still `$TBA`.** Mark confirmed the
-   bundle is a monthly subscription across five tools (Launch Planner, Content Proof, Ad
-   Proof, Conversion Pages, Campaign Report) priced below buying them individually — Lead
-   Reactivation is deliberately not part of the bundle — but hasn't given the actual
-   discounted monthly figure yet. The earlier "lump sum, run for you by a project manager"
-   framing was wrong (it also read as the Managed Services offer, which this site
-   deliberately never mentions — software, not services) and has been replaced.
+1. **Bundle price ($899/mo) is Claude's recommendation, not a confirmed figure — check with
+   Mark before this ships.** Individual tool pricing is real (Launch Planner $49/mo, Content
+   Proof $224/mo, Ad Proof $224/mo, Conversion Pages $249/mo, Campaign Report from $449/mo,
+   Lead Reactivation priced on its own site — sums to $1,195/mo for the five bundled tools),
+   but the "Individually" pricing card no longer displays those numbers — Mark asked for
+   green tick icons instead (availability, not price; see `SUITE_TOOLS` in `Pricing.tsx`).
+   The full-suite card shows `$899/mo` (`BUNDLE_PRICE` in `Pricing.tsx`) with a "$296 less
+   than buying them separately" line computed from `INDIVIDUAL_TOTAL - BUNDLE_PRICE` — a
+   ~25% discount off the $1,195 individual total, recommended over a smaller ~17%
+   discount ($999/mo) because a shallow discount undercuts the "cheaper than buying
+   individually" claim in the copy above it. Mark asked for a recommendation rather than
+   giving a figure — change `BUNDLE_PRICE` (and the two body-copy sentences either side of
+   it if the framing needs to shift) once he confirms a number. The earlier "lump sum, run
+   for you by a project manager" framing was wrong (it also read as the Managed Services
+   offer, which this site deliberately never mentions — software, not services) and has
+   been replaced.
 2. **"Start a project" CTAs point nowhere real** (`#`, in-page anchors) — needs a real
    contact flow: a form, a Calendly link, or an email address. ("Book a call" is wired up
    for real, to `/discovery` — this is specifically about the "Start a project" buttons.)
