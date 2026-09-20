@@ -178,12 +178,12 @@ src/
     Footer.tsx                    # plain light footer, matches sibling convention
   sections/
     Hero.tsx                      # centered, yellow underline accent under the headline
-    TrustStrip.tsx                 # "Projects running on the suite" — 11 real project names,
-                                   # plain text for now — see Known gaps for the logo swap
+    TrustStrip.tsx                 # "Trusted by" — 9 real projects, all with real logos, on a
+                                   # continuously scrolling (CSS marquee) track — see Known gaps
     WhyBlock.tsx                  # "stop renting access to your own data."
     Phases.tsx                    # six expanded product sections grouped under 4 phase headlines — see above
-    Pricing.tsx                   # "two ways to buy" — individually (link to #suite) vs. the
-                                   # full-suite bundle with a PM, $TBA — solid yellow CTA band
+    Pricing.tsx                   # "two ways to buy" — individually (real per-tool prices) vs.
+                                   # the full-suite bundle (5 tools, monthly subscription, $TBA)
 ```
 
 ### AppSwitcher note
@@ -238,8 +238,15 @@ deployment, check that in the dashboard before assuming the code is broken.
 
 ## Known gaps — confirm with Mark before this ships
 
-1. **Pricing shows `$XXX`** (individual tools) **and `$TBA`** (the full-suite bundle) — both
-   deliberately left as placeholders.
+1. **Individual tool pricing is real** (Launch Planner $49/mo, Content Proof $224/mo, Ad
+   Proof $224/mo, Conversion Pages $249/mo, Campaign Report from $449/mo, Lead Reactivation
+   priced on its own site). **The full-suite bundle is still `$TBA`.** Mark confirmed the
+   bundle is a monthly subscription across five tools (Launch Planner, Content Proof, Ad
+   Proof, Conversion Pages, Campaign Report) priced below buying them individually — Lead
+   Reactivation is deliberately not part of the bundle — but hasn't given the actual
+   discounted monthly figure yet. The earlier "lump sum, run for you by a project manager"
+   framing was wrong (it also read as the Managed Services offer, which this site
+   deliberately never mentions — software, not services) and has been replaced.
 2. **"Start a project" CTAs point nowhere real** (`#`, in-page anchors) — needs a real
    contact flow: a form, a Calendly link, or an email address. ("Book a call" is wired up
    for real, to `/discovery` — this is specifically about the "Start a project" buttons.)
@@ -256,11 +263,18 @@ deployment, check that in the dashboard before assuming the code is broken.
    cream/white backgrounds that needed flood-fill transparency before trimming — so a
    uniform bounding box on the untrimmed originals produced wildly inconsistent visual
    sizes) and resized to a 160px-tall max before saving, then displayed at a uniform height
-   with `grayscale + opacity-75`, full colour on hover. "Bankside West End" and "51 Fish
-   Lane" were removed from the strip entirely — the Bankside logo supplied reads "Bankside
-   — the West End Way", confirming they were the same project under two names, not two
-   separate ones. "Wira Neutral Bay" is now spelled "Wirra Neutral Bay" (double R),
-   corrected against the real logo. The "Colliers" logo flagged in an earlier session (not
+   with `grayscale + opacity-75`, full colour on hover — except Bankside, which is exempt
+   from that treatment (its logo is a very pale cream; grayscale + 75% opacity made it
+   nearly invisible against the white background, so it's shown at near-full opacity and
+   full colour always). "Bankside West End" and "51 Fish Lane" were removed from the strip
+   entirely — the Bankside logo supplied reads "Bankside — the West End Way", confirming
+   they were the same project under two names, not two separate ones. "Wira Neutral Bay" is
+   now spelled "Wirra Neutral Bay" (double R), corrected against the real logo. The strip
+   heading now reads "Trusted by" (was "Projects running on the suite"), and the row scrolls
+   continuously (CSS marquee, `tailwind.config.ts`'s `animate-marquee`, 32s per loop, pauses
+   on hover, respects `prefers-reduced-motion` via the same global rule `Reveal.tsx` relies
+   on) instead of wrapping to a static centred block — the project list is duplicated once
+   in the DOM for a seamless loop. The "Colliers" logo flagged in an earlier session (not
    one of the original project list) is still unresolved — separate from this list, ask
    Mark if it needs adding anywhere. Using a project's name or logo publicly typically needs
    sign-off from whoever owns it — worth confirming before this ships.

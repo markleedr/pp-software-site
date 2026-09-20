@@ -3,6 +3,15 @@ import { Reveal } from '@/components/Reveal'
 
 const DISCOVERY_URL = 'https://www.projectprofile.agency/discovery'
 
+const INDIVIDUAL_PRICES = [
+  { name: 'Launch Planner', price: '$49/mo' },
+  { name: 'Content Proof', price: '$224/mo' },
+  { name: 'Ad Proof', price: '$224/mo' },
+  { name: 'Conversion Pages', price: '$249/mo' },
+  { name: 'Campaign Report', price: 'from $449/mo' },
+  { name: 'Lead Reactivation', price: 'own pricing' },
+]
+
 export function Pricing() {
   return (
     <section id="pricing" className="py-24 sm:py-28" style={{ background: '#FFD600' }}>
@@ -20,10 +29,18 @@ export function Pricing() {
                 Individually
               </p>
               <h3 className="display mt-3 text-2xl sm:text-3xl">pick what you need.</h3>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground flex-1">
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                 Pick any tool from the six above — each has its own plan on its own site.
                 Start with one, add more as the project needs them.
               </p>
+              <ul className="mt-6 space-y-2.5 flex-1">
+                {INDIVIDUAL_PRICES.map((item) => (
+                  <li key={item.name} className="flex items-baseline justify-between text-sm border-b border-border pb-2.5">
+                    <span className="font-medium text-foreground">{item.name}</span>
+                    <span className="text-muted-foreground">{item.price}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Reveal>
 
@@ -33,15 +50,16 @@ export function Pricing() {
                 The full suite
               </p>
               <h3 className="display mt-3 text-2xl sm:text-3xl">
-                everything included, with a project manager.
+                five tools. one subscription.
               </h3>
               <p className="mt-4 text-base leading-relaxed text-white/70 flex-1">
-                Every tool in the suite, run for you by a dedicated project manager, for one
-                lump sum.
+                Launch Planner, Content Proof, Ad Proof, Conversion Pages and Campaign Report,
+                bundled into one monthly subscription — for less than buying each on its own.
+                Lead Reactivation isn't part of the bundle; add it separately if you need it.
               </p>
               <div className="mt-6 flex items-baseline gap-3">
                 <span className="font-extrabold leading-none text-3xl sm:text-4xl">$TBA</span>
-                <span className="text-sm text-white/60">lump sum, per project</span>
+                <span className="text-sm text-white/60">per month, for all five tools</span>
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 {/* TODO: point at the real contact flow once Mark confirms it. */}
