@@ -22,9 +22,10 @@ interface Product {
   benefits: string[]
   checklist: string[]
   // No real product screenshots yet for most tools — see CLAUDE.md. Once
-  // Mark supplies one, drop the URL in here and the gallery below renders
-  // automatically; empty stays hidden. Each is the "Riverside Residences"
-  // fictional demo project, not real client data.
+  // Mark supplies one, drop the URL in here — the gallery in the left
+  // column renders it in place of the "coming soon" placeholder
+  // automatically. Each is the "Riverside Residences" fictional demo
+  // project, not real client data.
   images?: string[]
 }
 
@@ -224,6 +225,10 @@ function ProductSection({ product }: { product: Product }) {
           >
             More about {product.name} <span aria-hidden className="ml-1">→</span>
           </ButtonLink>
+
+          <div className="mt-8">
+            <ImageGallery images={product.images ?? []} alt={product.name} />
+          </div>
         </div>
 
         <div>
@@ -252,8 +257,6 @@ function ProductSection({ product }: { product: Product }) {
           </ul>
         </div>
       </div>
-
-      <ImageGallery images={product.images ?? []} alt={product.name} />
     </div>
   )
 }

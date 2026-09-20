@@ -60,16 +60,21 @@ Checklists stayed closer to literal feature/spec detail (that's their job) but w
 to match these corrected scopes. If a product's real copy changes on its own site, or the
 product itself changes, this page will drift out of sync until someone updates it here too.
 
-**Real product screenshots — 1 of 6 tools done.** The agency reference page shows an actual
-UI mockup beside each product's text; this page used an icon square instead, because
-fabricating a screenshot with invented numbers would misrepresent the actual product.
-`src/components/ImageGallery.tsx` is a horizontal scroll-snap gallery (with left/right
-arrow buttons once there's more than one image) wired to each product's optional `images`
-array in `Phases.tsx`. Campaign Report now has its screenshot (the "Riverside Residences"
-fictional demo project); the other five products' arrays are still empty, so the gallery
-doesn't render for them yet. Drop an image into `src/assets/screenshots/`, import it, and
-add it to a product's `images` array and the gallery appears automatically; no other
-change needed.
+**Real product screenshots — 1 of 6 tools done; positioning fixed for all six.** The
+screenshot/placeholder now lives in the LEFT column, directly under each product's "More
+about X" button, not full-width below the whole section — the original placement (a
+lone thumbnail below both columns) left it orphaned, disconnected from the text it
+illustrates, with a large dead patch of whitespace next to it. `ImageGallery.tsx` renders
+one of three states from a product's `images` array: empty → a dashed-border "Screenshot
+coming soon" placeholder (never a fabricated screenshot — see below); one image → full
+column width, `aspect-video`, rounded corners, `shadow-lg` for presence; 2+ images → the
+same, in a horizontal scroll-snap filmstrip with left/right arrows. Campaign Report has its
+real screenshot (the "Riverside Residences" fictional demo project) in this new slot; the
+other five show the placeholder until Mark supplies theirs — same drop-in as before: save
+under `src/assets/screenshots/`, import it in `Phases.tsx`, add it to that product's
+`images` array, no other change needed. Fabricating a screenshot with invented numbers
+would misrepresent the actual product — that's why every product got a placeholder rather
+than a fake one.
 
 **Section rhythm:** don't put two centred, similarly-styled headline blocks back to back —
 Mark flagged an earlier version where the Phases section opened with its own big centred
@@ -288,11 +293,17 @@ deployment, check that in the dashboard before assuming the code is broken.
    one of the original project list) is still unresolved — separate from this list, ask
    Mark if it needs adding anywhere. Using a project's name or logo publicly typically needs
    sign-off from whoever owns it — worth confirming before this ships.
-6. **Product screenshots: 1 of 6 tools done.** Campaign Report now has a real screenshot
-   (`src/assets/screenshots/campaign-report-dashboard.webp`, wired into its `images` array in
-   `Phases.tsx`) — the "Riverside Residences" fictional demo project, per the plan in
-   "Expanded product sections" above (illustrative, not real client data). The other five
-   tools (Launch Planner, Content Proof, Ad Proof, Conversion Pages, Lead Reactivation) still
-   have empty `images` arrays and show no gallery — same drop-in pattern once Mark supplies
-   a screenshot for each: save it under `src/assets/screenshots/`, import it in `Phases.tsx`,
-   add it to that product's `images` array.
+6. **Product screenshots: 1 of 6 tools done; all six now show something in that slot.**
+   Campaign Report has a real screenshot (`src/assets/screenshots/campaign-report-dashboard.webp`,
+   wired into its `images` array in `Phases.tsx`) — the "Riverside Residences" fictional demo
+   project, per the plan in "Expanded product sections" above (illustrative, not real client
+   data). Mark's also considering swapping it for a different style (a "floating dashboard
+   cards" composition vs. the current full in-app screenshot) — not decided yet, flagged in
+   chat, not in code. The other five tools (Launch Planner, Content Proof, Ad Proof,
+   Conversion Pages, Lead Reactivation) show a "Screenshot coming soon" placeholder (dashed
+   border, no shadow — deliberately distinct from a real screenshot) instead of nothing, per
+   Mark's instruction to use placeholders while he gathers the real ones. Same drop-in
+   pattern once each arrives: save it under `src/assets/screenshots/`, import it in
+   `Phases.tsx`, add it to that product's `images` array — the placeholder is replaced
+   automatically, no other change needed. See "Real product screenshots" above for the
+   positioning fix (left column, under the CTA button) that shipped alongside this.
