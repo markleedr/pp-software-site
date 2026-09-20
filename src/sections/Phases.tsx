@@ -32,10 +32,15 @@ interface PhaseGroup {
   products: Product[]
 }
 
-// Product descriptions, benefits and checklists are pulled from Mark's own
-// live sites (projectprofile.agency/software, adproof.com.au,
-// contentproof.com.au) — real, already-published copy, not invented here.
-// Phase headlines are the locked copy from the earlier round.
+// Description/benefits copy rewritten from Mark's answers in an interview
+// (pp-ama) round — outcome-first, not the feature-list phrasing pulled from
+// the live sites in the previous round. Checklists stay closer to literal
+// feature/spec detail (that's their job), corrected where Mark's answers
+// revealed the source copy undersold or mis-scoped a product (Content
+// Proof isn't social-only; Conversion Pages is the whole site lifecycle,
+// not just landing pages; Campaign Report includes drop-off and sales
+// attribution, not just scheduled reports). Phase headlines are the
+// locked copy from an earlier round.
 const PHASE_GROUPS: PhaseGroup[] = [
   {
     number: '01',
@@ -50,14 +55,14 @@ const PHASE_GROUPS: PhaseGroup[] = [
       {
         name: 'Launch Planner',
         url: 'https://launchplanner.com.au/',
-        tagline: 'Scope, quote and plan with precision',
+        tagline: 'Built for property. Not borrowed from somewhere else.',
         icon: CalendarClock,
         description:
-          'A planning tool for property marketing scopes. Set out every service and deliverable, generate schedules, and produce itemised costings — stakeholders see the full picture from the start.',
+          'Property marketing has always run on spreadsheets, email chains and tools built for someone else’s industry. Launch Planner is the first one built for this: take a project from planning to implementation without losing a render, an EDM or a supplier along the way.',
         benefits: [
-          'Reduces planning time significantly',
-          'Eliminates scope creep with clear documentation',
-          'Aligns teams with shared project visibility',
+          'Nothing falls through the cracks between planning and go-live',
+          'One place to plan, instead of a patchwork of spreadsheets and inboxes',
+          'Built specifically for property marketing, not adapted from something else',
         ],
         checklist: [
           'Full service and deliverable list',
@@ -80,33 +85,33 @@ const PHASE_GROUPS: PhaseGroup[] = [
         tagline: 'Content approved. Chaos contained.',
         icon: FileCheck2,
         description:
-          'Build, proof, and publish property content, with every revision, approval, and sign-off in one place. No more email threads, no more guessing who approved what.',
+          'Social posts, blog articles, EDMs, even the project brochure — every piece usually goes through its own approval process. Content Proof handles all of it in one place, so nothing off-brand reaches a client or the public, and nobody’s chasing sign-off over email.',
         benefits: [
-          "No more email threads or guessing who approved what",
-          'Every proof checked against brand guidelines before it goes out',
-          'One-click approval — no login required for clients',
+          'One approval process for every content type — social, blog, email and brochures',
+          'Nothing off-brand reaches a client or the public',
+          'No more chasing sign-off across email threads',
         ],
         checklist: [
+          'Social posts, blog articles, EDMs and brochures, all in one place',
+          'Automatic brand and copy checks before anything goes out',
           'Bulk content import from a spreadsheet',
-          'Automatic brand and copy checks',
-          'All formats and placements — Facebook, Instagram, LinkedIn',
           'Magic-link approvals, versioned and traceable',
         ],
       },
       {
         name: 'Ad Proof',
         url: 'https://adproof.com.au/',
-        tagline: 'Streamline your client approval workflow',
+        tagline: 'From ad brief to live campaign, in one flow.',
         icon: Megaphone,
         description:
-          'Create beautiful ad previews, collect feedback, and get sign-off, all in one place, across Facebook, Instagram, LinkedIn and Google.',
+          'Build ads for every platform and placement, get them approved without the back-and-forth, and publish straight to the ad account — without leaving the tool.',
         benefits: [
-          'See exactly how ads look on every platform before they launch',
-          'Clients approve through a password-free proof link',
-          'Feedback and revisions logged against every ad',
+          'One flow from ad creation to a live campaign',
+          'Approvals without the back-and-forth',
+          'Publish straight to Meta and Google — no re-uploading, no re-checking',
         ],
         checklist: [
-          'Multi-platform previews (Facebook, Instagram, LinkedIn, Google)',
+          'Multi-platform previews — Facebook, Instagram, LinkedIn, Google',
           'Every ad format — images, carousels, video, stories, reels',
           'Campaign organisation across clients and projects',
           'Branded PDF exports',
@@ -116,21 +121,20 @@ const PHASE_GROUPS: PhaseGroup[] = [
       {
         name: 'Conversion Pages',
         url: 'https://www.conversionpages.com.au/',
-        tagline: 'High-converting landing pages',
+        tagline: 'From coming soon to sold out, one page.',
         icon: LayoutTemplate,
         description:
-          'A landing page tool for property projects, built to be set up without developer involvement. Choose from templates designed for off-the-plan campaigns or build custom designs, add popups and sticky bars, and connect your own domain.',
+          'A project’s web presence isn’t one page — it’s several, over the life of the campaign: a coming-soon teaser, a register-your-interest page, then the full site. Conversion Pages carries a project through all of them, wired straight into your CRM, with the page automatically improving as it runs.',
         benefits: [
-          'Launch landing pages in hours, not weeks',
-          'Increase conversion rates by up to 40%',
-          'Own your lead capture experience',
+          'One tool follows the project from coming soon to fully sold',
+          'Leads flow straight into your CRM, not a disconnected form',
+          'The page keeps improving on its own — you don’t have to rebuild it',
         ],
         checklist: [
-          'Pre-built templates or custom designs',
-          'Popups and sticky bars for lead capture',
+          'Coming soon, register interest and full project site templates',
+          'Integrated with your CRM',
+          'Automated updates that improve lead capture over time',
           'Custom domain support',
-          'Lead reporting dashboard',
-          'A/B testing',
           'Mobile-optimised by default',
         ],
       },
@@ -143,21 +147,21 @@ const PHASE_GROUPS: PhaseGroup[] = [
       {
         name: 'Campaign Report',
         url: 'https://www.campaignreport.com.au/',
-        tagline: 'Performance reporting on a schedule',
+        tagline: 'Marketing numbers and sales numbers, finally in one report.',
         icon: TrendingUp,
         description:
-          'Pulls data from your marketing platforms and generates branded reports on a set schedule. Set custom targets and KPIs, and schedule reports to go out weekly, monthly, or quarterly.',
+          'Most reporting stops at the lead — it can’t tell you whether that lead became a sale. Campaign Report connects marketing and sales data, charts exactly where a campaign is dropping off, and traces every sale back to the channel, campaign and dollar that produced it.',
         benefits: [
-          'Reduces time spent on manual reporting',
-          'Reports formatted for developer and stakeholder review',
-          'Tracks performance against targets set at the start of the campaign',
+          'See where the campaign is losing people, not just the final number',
+          'Attribution runs through to the sale, not just the lead',
+          'Marketing and sales data in one report, not two disconnected ones',
         ],
         checklist: [
           'Connect all major ad platforms',
-          'Custom targets and KPI tracking',
-          'Lead, content and email reports',
-          'Automated scheduling — weekly, monthly, quarterly',
+          'Campaign flow chart — see exactly where drop-off happens',
+          'Sales attribution, not just lead attribution',
           'Branded PDF exports',
+          'Automated scheduling — weekly, monthly, quarterly',
           'Historical comparison and trends',
         ],
       },
@@ -170,14 +174,14 @@ const PHASE_GROUPS: PhaseGroup[] = [
       {
         name: 'Lead Reactivation',
         url: 'https://leadreactivation.com.au/',
-        tagline: 'Re-engage dormant databases',
+        tagline: 'The buyer you already paid to find.',
         icon: RefreshCcw,
         description:
-          'Breathes new life into your dormant leads. Use SMS, phone, and email outreach to re-engage old databases, connect interested leads with sales agents, and reclassify your entire database.',
+          'You’ve already spent the marketing dollars to find these people once — most of them are still sitting in your database, just not ready yet. Lead Reactivation reopens that conversation at the right time, so you’re not paying to find the same buyer twice.',
         benefits: [
-          "Re-engages leads that didn't convert the first time",
-          'Reduces cost per acquisition',
-          'Connects interested leads back to sales agents',
+          'Re-engage buyers you already paid to acquire, without paying again',
+          "Catches the ones who weren't ready before, but are now",
+          'Reclassifies your whole database so sales agents know who’s warm',
         ],
         checklist: [
           'Multi-channel outreach — SMS, phone, email',

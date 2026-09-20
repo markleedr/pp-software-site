@@ -19,9 +19,12 @@ Page structure, in order: Hero → trust strip → why (data ownership) → the 
 (six tools, each an expanded product section) → pricing. The hero/why/phase-headline copy
 is locked from an earlier round (the reasoning behind the line breaks and the "every /
 every / one" rhythm lives in the session that built this — ask Mark if it needs retrieving).
-The per-product description/benefits/checklist copy in `Phases.tsx` is **not** invented —
-it's pulled from Mark's own live sites (see "Expanded product sections" below) and should
-be treated as real until he says otherwise.
+The per-product description/benefit copy in `Phases.tsx` came from a live interview with
+Mark (pp-ama skill — one question per product, until confident enough to write from) about
+what each tool actually changes for the customer, not what it does — see "Expanded product
+sections" below for the specifics that came out of it. The checklists stayed closer to the
+literal feature copy pulled from Mark's live sites in an earlier pass, corrected wherever
+the interview revealed the source copy had the wrong scope.
 
 **Layout/chrome deliberately matches the live sibling sites** (adproof.com.au,
 campaignreport.com.au, contentproof.com.au, and projectprofile.agency/software), not a
@@ -39,11 +42,23 @@ Each of the six tools gets its own full section — tagline, description, a "Key
 box, and a feature checklist — grouped under the four locked phase headlines (phase 2 holds
 three: Content Proof, Ad Proof, Conversion Pages). This replaced the original compact card
 grid after Mark pointed at `projectprofile.agency/software`'s expanded-section layout as the
-model to follow. The description/benefits/checklist text for Launch Planner, Conversion
-Pages, Campaign Report and Lead Reactivation is copied near-verbatim from that agency page;
-Content Proof's and Ad Proof's come from their own marketing sites (contentproof.com.au,
-adproof.com.au). None of it was written from scratch — if a product's real copy changes on
-its own site, this page will drift out of sync until someone updates it here too.
+model to follow.
+
+The tagline/description/benefits are outcome-first, Apple-voice copy from the pp-ama
+interview, not lifted from any live site. The interview also corrected real scope gaps the
+first pass (sourced from the live sites) had gotten wrong:
+- **Content Proof** isn't social-only — it proofs every content type (social, blog, EDMs,
+  the project brochure) in one place, not a different process per type.
+- **Conversion Pages** isn't "a landing page tool" — it carries a project's whole web
+  presence across its lifecycle (coming soon → register interest → full site), wired into
+  the CRM, with pages that improve themselves automatically over time.
+- **Campaign Report** isn't just scheduled reporting — it includes a campaign flow chart
+  that shows exactly where a campaign is dropping off, and attribution runs through to the
+  sale, not just the lead.
+
+Checklists stayed closer to literal feature/spec detail (that's their job) but were updated
+to match these corrected scopes. If a product's real copy changes on its own site, or the
+product itself changes, this page will drift out of sync until someone updates it here too.
 
 **Still missing: real product screenshots.** The agency reference page shows an actual UI
 mockup beside each product's text; this page uses an icon square instead, because
