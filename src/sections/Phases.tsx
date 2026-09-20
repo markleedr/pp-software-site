@@ -9,6 +9,8 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { Reveal } from '@/components/Reveal'
+import { ButtonLink } from '@/components/Button'
+import { ImageGallery } from '@/components/ImageGallery'
 
 interface Product {
   name: string
@@ -18,6 +20,10 @@ interface Product {
   description: string
   benefits: string[]
   checklist: string[]
+  // No real product screenshots yet for any tool — see CLAUDE.md. Once
+  // Mark supplies them, drop the URLs in here and the gallery below
+  // renders automatically; empty stays hidden.
+  images?: string[]
 }
 
 interface PhaseGroup {
@@ -189,53 +195,58 @@ const PHASE_GROUPS: PhaseGroup[] = [
 function ProductSection({ product }: { product: Product }) {
   const Icon = product.icon
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-8 lg:gap-16 items-start py-10">
-      <div>
-        <div
-          className="flex items-center justify-center rounded-xl"
-          style={{ width: 52, height: 52, background: 'rgba(255,214,0,0.14)' }}
-        >
-          <Icon size={24} color="#000000" strokeWidth={1.8} />
-        </div>
-        <h3 className="mt-5 text-2xl font-bold text-foreground">{product.name}</h3>
-        <p className="mt-1 text-sm font-semibold" style={{ color: '#B8860B' }}>
-          {product.tagline}
-        </p>
-        <a
-          href={product.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-black/70 transition-colors"
-        >
-          More about {product.name} <span aria-hidden>→</span>
-        </a>
-      </div>
-
-      <div>
-        <p className="text-base leading-relaxed text-muted-foreground">{product.description}</p>
-
-        <div className="mt-6 rounded-lg p-5" style={{ background: 'rgba(255,214,0,0.12)' }}>
-          <p className="text-xs font-bold uppercase tracking-[0.08em] text-muted-foreground">
-            Key benefits
+    <div className="py-10">
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-8 lg:gap-16 items-start">
+        <div>
+          <div
+            className="flex items-center justify-center rounded-xl"
+            style={{ width: 52, height: 52, background: 'rgba(255,214,0,0.14)' }}
+          >
+            <Icon size={24} color="#000000" strokeWidth={1.8} />
+          </div>
+          <h3 className="mt-5 text-2xl font-bold text-foreground">{product.name}</h3>
+          <p className="mt-1 text-sm font-semibold" style={{ color: '#B8860B' }}>
+            {product.tagline}
           </p>
-          <ul className="mt-2.5 space-y-1.5">
-            {product.benefits.map((b) => (
-              <li key={b} className="text-sm font-medium text-foreground">
-                {b}
+          <ButtonLink
+            href={product.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="dark"
+            className="mt-5 !px-5 !py-2.5 text-sm"
+          >
+            More about {product.name} <span aria-hidden className="ml-1">→</span>
+          </ButtonLink>
+        </div>
+
+        <div>
+          <p className="text-base leading-relaxed text-muted-foreground">{product.description}</p>
+
+          <div className="mt-6 rounded-lg p-5" style={{ background: 'rgba(255,214,0,0.12)' }}>
+            <p className="text-xs font-bold uppercase tracking-[0.08em] text-muted-foreground">
+              Key benefits
+            </p>
+            <ul className="mt-2.5 space-y-1.5">
+              {product.benefits.map((b) => (
+                <li key={b} className="text-sm font-medium text-foreground">
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
+            {product.checklist.map((item) => (
+              <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <Check size={16} className="mt-0.5 shrink-0" color="#000000" strokeWidth={2.5} />
+                {item}
               </li>
             ))}
           </ul>
         </div>
-
-        <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
-          {product.checklist.map((item) => (
-            <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-              <Check size={16} className="mt-0.5 shrink-0" color="#000000" strokeWidth={2.5} />
-              {item}
-            </li>
-          ))}
-        </ul>
       </div>
+
+      <ImageGallery images={product.images ?? []} alt={product.name} />
     </div>
   )
 }
@@ -243,23 +254,15 @@ function ProductSection({ product }: { product: Product }) {
 export function Phases() {
   return (
     <section id="suite" className="bg-background">
-      <div className="container py-24 sm:py-28">
-        <Reveal>
-          <div className="text-center max-w-2xl mx-auto">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
-              Six tools. Four phases.
-            </p>
-            <h2 className="display mt-3 text-3xl sm:text-4xl">
-              everything from launch to sale, in one suite.
-            </h2>
-          </div>
-        </Reveal>
-      </div>
-
       {PHASE_GROUPS.map((phase, i) => (
         <div key={phase.number} className={i % 2 === 1 ? 'bg-muted' : 'bg-background'}>
           <div className="container py-16 sm:py-20">
             <Reveal>
+              {i === 0 && (
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground/60 mb-2">
+                  Six tools. Four phases.
+                </p>
+              )}
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
                 Phase {phase.number}
               </p>

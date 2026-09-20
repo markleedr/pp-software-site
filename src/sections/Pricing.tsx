@@ -21,12 +21,9 @@ export function Pricing() {
               </p>
               <h3 className="display mt-3 text-2xl sm:text-3xl">pick what you need.</h3>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground flex-1">
-                Every tool in the suite has its own plan on its own site. Start with one, add
-                more as the project needs them.
+                Pick any tool from the six above — each has its own plan on its own site.
+                Start with one, add more as the project needs them.
               </p>
-              <ButtonLink href="#suite" variant="outline" className="mt-8 self-start">
-                Explore the suite
-              </ButtonLink>
             </div>
           </Reveal>
 

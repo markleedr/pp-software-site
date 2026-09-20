@@ -47,8 +47,20 @@ its own site, this page will drift out of sync until someone updates it here too
 
 **Still missing: real product screenshots.** The agency reference page shows an actual UI
 mockup beside each product's text; this page uses an icon square instead, because
-fabricating a screenshot with invented numbers would misrepresent the actual product. Swap
-in real screenshots when they're available.
+fabricating a screenshot with invented numbers would misrepresent the actual product.
+`src/components/ImageGallery.tsx` is a horizontal scroll-snap gallery (with left/right
+arrow buttons once there's more than one image) wired to each product's optional `images`
+array in `Phases.tsx` — it's built and ready but every product's array is currently empty,
+so nothing renders. Drop image URLs into a product's `images` array and the gallery appears
+automatically; no other change needed.
+
+**Section rhythm:** don't put two centred, similarly-styled headline blocks back to back —
+Mark flagged an earlier version where the Phases section opened with its own big centred
+headline directly under WhyBlock's, which read as a duplicate and killed the background
+contrast between them (both landed on white). The fix: Phases now opens straight into
+"PHASE 01" with no separate intro block; the small "Six tools. Four phases." eyebrow is
+folded into phase 1's kicker instead of standing alone. Keep this in mind before adding any
+new section-level heading near an existing one.
 
 **One deliberate scope call:** Project Email is a real, live product (projectemail.com.au,
 marked "Coming Soon" on the agency page) but isn't included here — the agency page's own
@@ -143,12 +155,16 @@ src/
     Nav.tsx                      # sticky white nav — badge + name + links + Book a call + AppSwitcher + CTA
     AppSwitcher.tsx               # waffle menu — see "AppSwitcher" note below
     Button.tsx                    # shared pill button/link — variants: primary, onAccent
-                                   # (white-on-yellow), outline, outlineOnDark; active:scale press feedback
+                                   # (white-on-yellow), outline, outlineOnDark, dark
+                                   # (black — used for the "More about X" product links so
+                                   # they read as real buttons, not text); active:scale press feedback
+    ImageGallery.tsx               # scroll-snap image gallery for product sections — see Phases note above
     Reveal.tsx                    # scroll-triggered fade-up wrapper, reduced-motion safe
     Footer.tsx                    # plain light footer, matches sibling convention
   sections/
     Hero.tsx                      # centered, yellow underline accent under the headline
-    TrustStrip.tsx                 # "Used by" — 3 client names, plain text — see Known gaps
+    TrustStrip.tsx                 # "Projects running on the suite" — 11 real project names,
+                                   # plain text for now — see Known gaps for the logo swap
     WhyBlock.tsx                  # "stop renting access to your own data."
     Phases.tsx                    # six expanded product sections grouped under 4 phase headlines — see above
     Pricing.tsx                   # "two ways to buy" — individually (link to #suite) vs. the
@@ -216,11 +232,15 @@ deployment, check that in the dashboard before assuming the code is broken.
 4. **No downloadable asset yet.** Mark said his team will produce one (a sample report or
    similar) — there's nowhere on the page to link it to yet, add a download CTA once it
    exists.
-5. **TrustStrip shows client company names as plain text, not logos or specific projects.**
-   Recommended project names over company logos (matches the pattern already live on
-   `projectprofile.agency/discovery`, which lists specific projects — "Monarch Residences,"
-   "Ashbourne," etc. — not developer logos) but don't have real project names for
-   Consolidated Properties/Stockwell/RV Lifestyle to use, so it's just their company names
-   for now. Also worth noting: using a client's name publicly typically needs their sign-off
-   — confirm permission before this ships, whichever direction it goes.
-6. **No real product screenshots** in the expanded Phases sections — see the note above.
+5. **TrustStrip shows 11 real project names as plain text** (Mark supplied the list —
+   Monarch Residences, CPG, Bankside, Solana Lifestyle Resorts, Stockwell, Rhodes on
+   Melbourne, Wira Neutral Bay, Bankside West End, RV Lifestyle, 51 Fish Lane, Noosa Civic
+   Shopping Centre — two obvious typos against his own spelling elsewhere were corrected,
+   see the code comment). Mark said actual project **logos** will follow separately to
+   replace this text treatment — swap them in when they arrive, sized/greyscale to match
+   the brand guidelines' logo-wall convention (evenly spaced, equal optical weight). Using a
+   project's name or logo publicly typically needs sign-off from whoever owns it — worth
+   confirming before this ships, independent of the text-vs-logo question.
+6. **No real product screenshots** in the expanded Phases sections — see the
+   "Expanded product sections" note above for the plan (a single illustrative screenshot per
+   tool, one fictional demo project, not real client data).

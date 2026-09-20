@@ -9,6 +9,7 @@ const variants = {
   onAccent: 'bg-white text-black hover:brightness-95',
   outline: 'border border-border text-foreground hover:bg-muted',
   outlineOnDark: 'border border-white/40 text-white hover:bg-white/10',
+  dark: 'bg-black text-white hover:bg-black/85',
   ghost: 'text-foreground hover:bg-muted',
 }
 
