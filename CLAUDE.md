@@ -247,15 +247,22 @@ deployment, check that in the dashboard before assuming the code is broken.
 4. **No downloadable asset yet.** Mark said his team will produce one (a sample report or
    similar) — there's nowhere on the page to link it to yet, add a download CTA once it
    exists.
-5. **TrustStrip shows 11 real project names as plain text** (Mark supplied the list —
-   Monarch Residences, CPG, Bankside, Solana Lifestyle Resorts, Stockwell, Rhodes on
-   Melbourne, Wira Neutral Bay, Bankside West End, RV Lifestyle, 51 Fish Lane, Noosa Civic
-   Shopping Centre — two obvious typos against his own spelling elsewhere were corrected,
-   see the code comment). Mark said actual project **logos** will follow separately to
-   replace this text treatment — swap them in when they arrive, sized/greyscale to match
-   the brand guidelines' logo-wall convention (evenly spaced, equal optical weight). Using a
-   project's name or logo publicly typically needs sign-off from whoever owns it — worth
-   confirming before this ships, independent of the text-vs-logo question.
+5. **TrustStrip: 5 of 11 projects now have real logos** (`src/assets/logos/`) — CPG
+   (Consolidated Properties Group), Stockwell, RV Lifestyle, Rhodes on Melbourne, Noosa
+   Civic. All five were trimmed with Pillow to their actual visible content (the source
+   files had wildly inconsistent baked-in padding — some near-zero, RV Lifestyle's had
+   almost half the canvas as whitespace above/below the mark — so a uniform bounding box on
+   the untrimmed originals produced wildly inconsistent visual sizes) and resized to a
+   160px-tall max before saving, then displayed at a uniform height with
+   `grayscale + opacity-75`, full colour on hover. The remaining 6 (Monarch Residences,
+   Bankside, Solana Lifestyle Resorts, Wira Neutral Bay, Bankside West End, 51 Fish Lane)
+   still show as plain text in the same strip — `TrustStrip.tsx`'s `PROJECTS` array makes
+   this an easy swap per-entry as more logos arrive. Two more images (Solana Lifestyle
+   Resorts, and a "Colliers" logo — not one of the original 11 projects, flagged to Mark,
+   unresolved) were sent inline in chat without a retrievable file path and couldn't be
+   saved; need a re-send as an upload/attachment or Drive link. Using a project's name or
+   logo publicly typically needs sign-off from whoever owns it — worth confirming before
+   this ships.
 6. **No real product screenshots** in the expanded Phases sections — see the
    "Expanded product sections" note above for the plan (a single illustrative screenshot per
    tool, one fictional demo project, not real client data).
