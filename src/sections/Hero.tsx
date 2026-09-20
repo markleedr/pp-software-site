@@ -3,7 +3,7 @@ import { Reveal } from '@/components/Reveal'
 
 export function Hero() {
   return (
-    <section className="relative min-h-[92vh] flex items-end overflow-hidden bg-black">
+    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-black">
       {/*
         Placeholder for hero photography — warm dusk-toned architectural gradient
         standing in for a full-bleed exterior/interior shot per brand imagery
@@ -14,22 +14,26 @@ export function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(120% 90% at 15% 20%, #2b2620 0%, #171512 45%, #0a0a0a 100%)',
+            'radial-gradient(120% 90% at 50% 20%, #2b2620 0%, #171512 45%, #0a0a0a 100%)',
         }}
       />
       <div className="absolute inset-0 bg-black/35" />
 
-      <div className="container relative pb-20 pt-40 sm:pb-28">
+      <div className="container relative py-24 text-center flex flex-col items-center">
         <Reveal>
-          <h1 className="display text-white text-[2.75rem] leading-[0.98] sm:text-[4rem] lg:text-[5.25rem] max-w-3xl">
+          <h1 className="display text-white text-[2.5rem] leading-[1.05] sm:text-[3.5rem] lg:text-[4.5rem] max-w-3xl mx-auto">
             everything under one roof.
             <br />
             including the roof.
           </h1>
         </Reveal>
 
-        <Reveal delay={120}>
-          <p className="mt-6 text-lg sm:text-xl text-white/85 max-w-md leading-snug">
+        <Reveal delay={80}>
+          <div className="mt-5 h-1 w-24 rounded-full" style={{ background: '#FFD600' }} />
+        </Reveal>
+
+        <Reveal delay={140}>
+          <p className="mt-8 text-lg sm:text-xl text-white/80 max-w-md leading-snug">
             Software for property marketing.
             <br />
             Plan, launch, measure, sell.
@@ -37,9 +41,12 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={220}>
-          <ButtonLink href="#pricing" className="mt-9">
-            Start a project
-          </ButtonLink>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+            <ButtonLink href="#pricing">Start a project</ButtonLink>
+            <ButtonLink href="#suite" variant="outlineOnDark">
+              See the suite
+            </ButtonLink>
+          </div>
         </Reveal>
       </div>
     </section>

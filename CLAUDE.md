@@ -20,6 +20,19 @@ pricing. The full locked copy (and the reasoning behind the line breaks and the 
 every / one" rhythm) is in the session that built this — ask Mark if it needs to be
 retrieved, or treat the copy in `src/sections/*.tsx` as the source of truth going forward.
 
+**Layout/chrome deliberately matches the live sibling sites** (adproof.com.au,
+campaignreport.com.au, contentproof.com.au), not a literal reading of the brand guidelines
+PDF — Mark asked for this explicitly after seeing the first pass. Where the two disagree
+(pill buttons vs. the guideline's flat 6px radius; centered hero vs. asymmetric; a white
+sticky nav with a circular product badge instead of a transparent-over-hero one) the live
+sites win. What still comes from the brand guidelines: lowercase-with-period display
+headings, Montserrat, and yellow used sparingly as a single accent (except the solid yellow
+CTA band, which the guidelines explicitly allow as a marketing-surface treatment). See
+`Phases.tsx` for one small addition beyond the locked copy: a section-level headline
+("everything from launch to sale, in one suite.") above the card grid, added to match the
+sibling sites' pattern of a headline over their feature grid — cut or edit it if Mark
+didn't intend to reopen the copy.
+
 **Out of scope, on purpose:** Media Schedule and Lead Sheet are not part of this suite.
 Managed Services (the done-for-you agency offer) isn't mentioned — this site sells software,
 not services. CRM-PM is internal-only and must never appear here, not even as a "coming
@@ -83,7 +96,11 @@ Rules baked into this repo's Tailwind config and `index.css`, do not casually ov
   no exclamation marks unless genuinely earned.
 - **Imagery**: naturalistic, warm property photography, no heavy filters or grain, full-bleed
   and structural (not a decorative thumbnail). **The hero currently uses a gradient
-  placeholder, not a real photo** — see Known gaps below.
+  placeholder, not a real photo.** Mark's source images live at
+  `Google Drive → Project Profile → Images → Header Images` on his own machine — a path this
+  session (running in an isolated cloud container) cannot reach. Get them into the session by
+  having Mark attach/upload the files directly, or push them into `src/assets/` himself —
+  see Known gaps below.
 
 Full guideline PDF and the agency one-pager live outside this repo (uploaded to the session
 that built this site) — ask Mark for them if a future session needs the source document
@@ -98,16 +115,17 @@ src/
   lib/
     utils.ts                     # cn() — clsx + tailwind-merge
   components/
-    Nav.tsx                      # fixed nav, transparent over hero / translucent white on scroll
+    Nav.tsx                      # sticky white nav — badge + name + links + AppSwitcher + CTA
     AppSwitcher.tsx               # waffle menu — see "AppSwitcher" note below
-    Button.tsx                    # shared button/link with press feedback (active:scale)
+    Button.tsx                    # shared pill button/link — variants: primary, onAccent
+                                   # (white-on-yellow), outline, outlineOnDark; active:scale press feedback
     Reveal.tsx                    # scroll-triggered fade-up wrapper, reduced-motion safe
-    Footer.tsx
+    Footer.tsx                    # plain light footer, matches sibling convention
   sections/
-    Hero.tsx
+    Hero.tsx                      # centered, yellow underline accent under the headline
     WhyBlock.tsx                  # "stop renting access to your own data."
-    Phases.tsx                    # the four phases / six tools, data-driven from PHASES array
-    Pricing.tsx                   # $XXX placeholder — see Known gaps
+    Phases.tsx                    # 2x2 white card grid (icon square + headline + body), data-driven from PHASES array
+    Pricing.tsx                   # solid yellow CTA band, $XXX placeholder — see Known gaps
 ```
 
 ### AppSwitcher note
@@ -120,34 +138,43 @@ Sheet and Managed Services are left out here on purpose, matching the "out of sc
 above. If that's wrong and Mark wants the universal 9-tool switcher instead, swap the
 `TOOLS` array back to match the sibling repos'.
 
-It also reads **"Launch Planner"**, the new name for the product the sibling repos'
-switchers still call "Project Base" (same URL, `projectbase.com.au`). That's a deliberate
-mismatch introduced here — the rename hasn't been carried into the other repos yet. Ask
-Mark before pushing the rename into Ad Proof / Campaign Report's `AppSwitcher.tsx`; that's
-a separate, cross-repo change this session didn't make.
+It also reads **"Launch Planner"** — confirmed and now renamed everywhere: Ad Proof's and
+Campaign Report's `AppSwitcher.tsx` (and vision-property-reports' `app-switcher-prompt.json`
+build spec) were updated to match in the same session. URL and internal id (`project-base`)
+are unchanged; only the label changed.
 
 ## Environment variables
 
 ```
-VITE_SUPABASE_URL
-VITE_SUPABASE_PUBLISHABLE_KEY
-VITE_SUPABASE_PROJECT_ID
+VITE_SUPABASE_URL=https://vlliytfspvumddfjgmhb.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_hwIibJ5flIyJx9ulytEolA_fRXbgP-t
+VITE_SUPABASE_PROJECT_ID=vlliytfspvumddfjgmhb
 ```
 
-Not wired up yet — nothing on this page currently needs a database or auth. Mark supplied
-a Supabase project URL (`vlliytfspvumddfjgmhb`) when this site was commissioned; whether
-that's a dedicated project for this site or one shared with another app was never
-confirmed. Don't wire Supabase in without checking first.
+Confirmed by Mark: `vlliytfspvumddfjgmhb` ("PP-software-site" in Supabase, created
+2026-09-13) is a **dedicated** project for this site, not shared with another app. Values
+above are in `.env.example` — they're safe to commit, the anon/publishable key is meant to
+be public. Still not wired into the app itself: nothing on the page currently needs a
+database or auth, so there's no Supabase client here yet. Add one when a real feature (the
+contact form, most likely) needs it.
+
+## Deployment
+
+**Vercel project `pp-software-site` exists** (team `markleedrs-projects`, framework
+auto-detected as Vite), reachable at `pp-software-site.vercel.app`. No custom domain
+(`projectprofile.software`) is attached yet — only the default `.vercel.app` subdomains.
+Whether the project auto-deploys from this repo's `main` on every push (the way Ad Proof
+and Campaign Report do, per their own CLAUDE.md) couldn't be confirmed through the Vercel
+API/MCP surface used to check it — that detail lives in the Vercel dashboard's Git
+integration, which the API doesn't expose. If a push to `main` doesn't produce a new
+deployment, check that in the dashboard before assuming the code is broken.
 
 ## Known gaps — confirm with Mark before this ships
 
-1. **Hero and phase imagery is a gradient placeholder**, not real photography. The brand
-   treats property photography as "the brand's visual currency" — this needs real,
-   naturalistic shots before launch.
+1. **Hero and phase imagery is a gradient placeholder**, not real photography. Real source
+   images exist (Mark's Google Drive, see the Imagery note above) but this session couldn't
+   reach them — get them in via upload/attachment or have Mark commit them to `src/assets/`.
 2. **Pricing shows `$XXX`** — the real figure was deliberately left as a placeholder.
 3. **"Start a project" CTAs point nowhere real** (`#`, in-page anchors) — needs a real
    contact flow: a form, a Calendly link, or an email address.
-4. **Deployment target is unconfirmed.** No Vercel project or DNS has been set up for
-   projectprofile.software; sibling repos deploy to Vercel from `main`, but that hasn't
-   been done here.
-5. **AppSwitcher scope and the "Launch Planner" rename** — see note above.
+4. **No custom domain attached in Vercel yet** — see Deployment above.

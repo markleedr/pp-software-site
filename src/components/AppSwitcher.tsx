@@ -126,10 +126,9 @@ const WaffleIcon = () => (
 
 interface AppSwitcherProps {
   currentTool?: ToolId
-  dark?: boolean
 }
 
-export default function AppSwitcher({ currentTool, dark = false }: AppSwitcherProps) {
+export default function AppSwitcher({ currentTool }: AppSwitcherProps) {
   const [open, setOpen] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
@@ -164,11 +163,7 @@ export default function AppSwitcher({ currentTool, dark = false }: AppSwitcherPr
       <button
         ref={triggerRef}
         onClick={() => setOpen((p) => !p)}
-        className={`flex items-center justify-center rounded-pill border transition-colors ${
-          dark
-            ? 'border-white/25 text-white/80 hover:text-white hover:bg-white/10'
-            : 'border-border text-muted-foreground hover:text-foreground hover:bg-muted'
-        }`}
+        className="flex items-center justify-center rounded-pill border border-border text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
         style={{ width: 36, height: 36 }}
         aria-label="Project Profile software suite"
         aria-expanded={open}
