@@ -11,7 +11,11 @@ import {
 import { Reveal } from '@/components/Reveal'
 import { ButtonLink } from '@/components/Button'
 import { ImageGallery } from '@/components/ImageGallery'
-import campaignReportDashboard from '@/assets/screenshots/campaign-report-dashboard.webp'
+import launchPlannerDashboard from '@/assets/screenshots/launch-planner-dashboard.png'
+import conversionPagesBuilder from '@/assets/screenshots/conversion-pages-builder.png'
+import campaignReportInsights from '@/assets/screenshots/campaign-report-insights.png'
+import leadReactivationOutreach from '@/assets/screenshots/lead-reactivation-outreach.png'
+import contentProofApprovalQueue from '@/assets/screenshots/content-proof-approval-queue.png'
 
 interface Product {
   name: string
@@ -21,11 +25,11 @@ interface Product {
   description: string
   benefits: string[]
   checklist: string[]
-  // No real product screenshots yet for most tools — see CLAUDE.md. Once
-  // Mark supplies one, drop the URL in here — the gallery in the left
-  // column renders it in place of the "coming soon" placeholder
-  // automatically. Each is the "Riverside Residences" fictional demo
-  // project, not real client data.
+  // Real screenshots — see CLAUDE.md. Once Mark supplies one for the
+  // remaining tool, drop the URL in here — the gallery in the left column
+  // renders it in place of the "coming soon" placeholder automatically.
+  // Illustrative fictional demo data ("Riverside/Riverfront Residences"),
+  // never real client data.
   images?: string[]
 }
 
@@ -75,6 +79,7 @@ const PHASE_GROUPS: PhaseGroup[] = [
           'Timeline visualisation with Gantt charts',
           'Stakeholder sharing and collaboration',
         ],
+        images: [launchPlannerDashboard],
       },
     ],
   },
@@ -100,6 +105,7 @@ const PHASE_GROUPS: PhaseGroup[] = [
           'Bulk content import from a spreadsheet',
           'Magic-link approvals, versioned and traceable',
         ],
+        images: [contentProofApprovalQueue],
       },
       {
         name: 'Ad Proof',
@@ -140,6 +146,7 @@ const PHASE_GROUPS: PhaseGroup[] = [
           'Custom domain support',
           'Mobile-optimised by default',
         ],
+        images: [conversionPagesBuilder],
       },
     ],
   },
@@ -167,7 +174,7 @@ const PHASE_GROUPS: PhaseGroup[] = [
           'Automated scheduling — weekly, monthly, quarterly',
           'Historical comparison and trends',
         ],
-        images: [campaignReportDashboard],
+        images: [campaignReportInsights],
       },
     ],
   },
@@ -195,6 +202,7 @@ const PHASE_GROUPS: PhaseGroup[] = [
           'Automated follow-up sequences',
           'Performance tracking and reporting',
         ],
+        images: [leadReactivationOutreach],
       },
     ],
   },
