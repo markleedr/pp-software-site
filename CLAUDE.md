@@ -95,12 +95,14 @@ Rules baked into this repo's Tailwind config and `index.css`, do not casually ov
   utilise, synergy, holistic, best-in-class, game-changing, revolutionary, etc.), no emoji,
   no exclamation marks unless genuinely earned.
 - **Imagery**: naturalistic, warm property photography, no heavy filters or grain, full-bleed
-  and structural (not a decorative thumbnail). **The hero currently uses a gradient
-  placeholder, not a real photo.** Mark's source images live at
-  `Google Drive → Project Profile → Images → Header Images` on his own machine — a path this
-  session (running in an isolated cloud container) cannot reach. Get them into the session by
-  having Mark attach/upload the files directly, or push them into `src/assets/` himself —
-  see Known gaps below.
+  and structural (not a decorative thumbnail). The hero uses `src/assets/hero-building.jpg` —
+  a real photo (golden-hour apartment exterior, roofline visible, deliberately picked to play
+  against "including the roof."), pulled from Mark's shared Google Drive folder
+  (`Project Profile → Images → Header Images`). That folder has two more prepared header
+  images at the same 1920×823 crop (`preview copy.jpg` — an empty warm interior,
+  `preview (1).jpg` — a couple at a table, visible iPad/Apple logo so probably not brand-safe
+  to use) plus six raw, uncropped AI-rendered source images it looks like those three were
+  cropped from — worth a look if a future section needs another photo.
 
 Full guideline PDF and the agency one-pager live outside this repo (uploaded to the session
 that built this site) — ask Mark for them if a future session needs the source document
@@ -171,10 +173,7 @@ deployment, check that in the dashboard before assuming the code is broken.
 
 ## Known gaps — confirm with Mark before this ships
 
-1. **Hero and phase imagery is a gradient placeholder**, not real photography. Real source
-   images exist (Mark's Google Drive, see the Imagery note above) but this session couldn't
-   reach them — get them in via upload/attachment or have Mark commit them to `src/assets/`.
-2. **Pricing shows `$XXX`** — the real figure was deliberately left as a placeholder.
-3. **"Start a project" CTAs point nowhere real** (`#`, in-page anchors) — needs a real
+1. **Pricing shows `$XXX`** — the real figure was deliberately left as a placeholder.
+2. **"Start a project" CTAs point nowhere real** (`#`, in-page anchors) — needs a real
    contact flow: a form, a Calendly link, or an email address.
-4. **No custom domain attached in Vercel yet** — see Deployment above.
+3. **No custom domain attached in Vercel yet** — see Deployment above.
