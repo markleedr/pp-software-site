@@ -71,25 +71,23 @@ column width, natural aspect ratio (`w-full h-auto`, no crop), rounded corners, 
 for presence — an earlier version forced a fixed `aspect-video` box with `object-cover`,
 which cropped every screenshot since none of them are actually 16:9 (Mark flagged this;
 fixed); 2+ images → the
-same, in a horizontal scroll-snap filmstrip with left/right arrows. Launch Planner,
-Conversion Pages, Campaign Report, and Lead Reactivation use a "floating dashboard cards
-in a browser-chrome frame" mockup style (macOS traffic lights, address bar, individual UI
-cards with their own shadows on a plain background) — Campaign Report's earlier real
-screenshot (a literal full in-app dashboard crop) was replaced with this style once Mark
-decided between the two options discussed in chat. Ad Proof got two screenshots in this
-same floating-card style (no browser chrome this time, just the cards) — a single-ad
-review modal and a bulk-approve queue view — added together as a 2-image gallery since
-they show different, complementary parts of the flow rather than competing takes on the
-same screen; Mark's instruction was "replace with the new image" (singular) so this is a
-judgment call worth flagging — if he only wanted one, dropping either import from
-`images: [adProofReview, adProofBulkQueue]` in `Phases.tsx` is a one-line change. Content
-Proof instead got a literal full in-app screenshot (dense, dark sidebar, no browser
-chrome) — visibly a different style from the other five; flagged to Mark, not resolved,
-purely a visual-consistency call, not a factual problem. Same drop-in pattern for any
-future replacement: save under `src/assets/screenshots/`, import it in `Phases.tsx`, add
-it to that product's `images` array, no other change needed. Fabricating a screenshot
-with invented numbers would misrepresent the actual product — that's why every product got
-a placeholder rather than
+same, in a horizontal scroll-snap filmstrip with left/right arrows. All six now use the
+same "floating dashboard cards in a browser-chrome frame" mockup style (macOS traffic
+lights, address bar, individual UI cards with their own shadows on a plain background) —
+Launch Planner, Conversion Pages, Campaign Report, Lead Reactivation, Ad Proof (single
+image: the ad-review modal) and Content Proof (the bulk-review-queue image, moved here
+from Ad Proof — it was originally paired with the ad-review modal since both arrived in
+one message with no caption, but Mark sent it twice more captioned "replace content proof
+image with this one," and its own on-screen "Review Content" label supports that; the
+mis-assignment was corrected, not Mark repeating a mistake). Campaign Report's earlier
+real screenshot (a literal full in-app dashboard crop) was replaced with this style once
+Mark decided between the two options discussed in chat; Content Proof's earlier literal
+full in-app screenshot (dense, dark sidebar) is gone too — the visual-consistency gap
+flagged earlier is resolved, all six now match. Same drop-in pattern for any future
+replacement: save under `src/assets/screenshots/`, import it in `Phases.tsx`, add it to
+that product's `images` array, no other change needed. Fabricating a screenshot with
+invented numbers would misrepresent the actual product — that's why every product got a
+placeholder rather than
 a fake one while its real screenshot was pending.
 
 **Section rhythm:** don't put two centred, similarly-styled headline blocks back to back —
@@ -205,9 +203,10 @@ src/
                                    # continuously scrolling (CSS marquee) track — see Known gaps
     WhyBlock.tsx                  # "stop renting access to your own data."
     Phases.tsx                    # six expanded product sections grouped under 4 phase headlines — see above
-    Pricing.tsx                   # "two ways to buy" — individually (tool list, green ticks,
-                                   # no prices shown) vs. the full-suite bundle (5 tools,
-                                   # monthly subscription, $899/mo — see Known gaps)
+    Pricing.tsx                   # "start with one tool. grow into the suite." — individually
+                                   # (tool list, green ticks, no prices shown) vs. the
+                                   # full-suite bundle (5 tools, monthly subscription,
+                                   # $899/mo — see Known gaps)
 ```
 
 ### AppSwitcher note
@@ -309,19 +308,16 @@ deployment, check that in the dashboard before assuming the code is broken.
    one of the original project list) is still unresolved — separate from this list, ask
    Mark if it needs adding anywhere. Using a project's name or logo publicly typically needs
    sign-off from whoever owns it — worth confirming before this ships.
-6. **Product screenshots: all 6 of 6 tools done.** Launch Planner, Conversion Pages,
-   Campaign Report and Lead Reactivation all use the same "floating dashboard cards in a
-   browser-chrome frame" mockup style (`src/assets/screenshots/launch-planner-dashboard.png`,
-   `conversion-pages-builder.png`, `campaign-report-insights.png`, `lead-reactivation-outreach.png`).
-   **Ad Proof shows two** (`ad-proof-review.png`, `ad-proof-bulk-queue.png`) in a 2-image
-   scroll-snap gallery — a single-ad review modal and a bulk-approve queue, added together
-   because they're different views rather than style alternatives. Mark's instruction
-   ("replace with the new image", singular) is ambiguous about whether he wanted one or
-   both — worth confirming; dropping one from `images: [adProofReview, adProofBulkQueue]`
-   in `Phases.tsx` is a one-line fix if so. **Content Proof** has a real screenshot too
-   (`content-proof-approval-queue.png`) but in a visibly different style — a literal full
-   in-app crop (dense, dark sidebar), not the browser-chrome/floating-card treatment the
-   other four share. Worth asking Mark whether to redo it to match, or leave it — flagged,
-   not resolved, a consistency call rather than a correctness one. See "Real product
-   screenshots" above for the positioning fix (left column, under the CTA button) that
-   shipped alongside the first of these.
+6. **Product screenshots: all 6 of 6 tools done, all in the same style — resolved.**
+   Every product now uses the "floating dashboard cards in a browser-chrome frame" mockup
+   style (`src/assets/screenshots/launch-planner-dashboard.png`, `conversion-pages-builder.png`,
+   `campaign-report-insights.png`, `lead-reactivation-outreach.png`, `ad-proof-review.png`,
+   `content-proof-review-queue.png`). Two corrections from the previous round: Ad Proof was
+   briefly shown with two images (the ad-review modal plus a bulk-approve-queue image) —
+   the second one actually belonged to Content Proof (its on-screen "Review Content" label
+   was the tell) and had been mis-paired with Ad Proof's simply because both arrived in one
+   message with no caption; moved once Mark repeated the correction. Content Proof's
+   previous literal full in-app screenshot (dense, dark sidebar) is gone — the
+   visual-consistency gap flagged earlier is resolved, nothing left inconsistent. See "Real
+   product screenshots" above for the positioning fix (left column, under the CTA button)
+   and the crop fix (natural aspect ratio, no forced 16:9) that shipped alongside these.

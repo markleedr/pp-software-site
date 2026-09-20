@@ -15,9 +15,8 @@ import launchPlannerDashboard from '@/assets/screenshots/launch-planner-dashboar
 import conversionPagesBuilder from '@/assets/screenshots/conversion-pages-builder.png'
 import campaignReportInsights from '@/assets/screenshots/campaign-report-insights.png'
 import leadReactivationOutreach from '@/assets/screenshots/lead-reactivation-outreach.png'
-import contentProofApprovalQueue from '@/assets/screenshots/content-proof-approval-queue.png'
+import contentProofReviewQueue from '@/assets/screenshots/content-proof-review-queue.png'
 import adProofReview from '@/assets/screenshots/ad-proof-review.png'
-import adProofBulkQueue from '@/assets/screenshots/ad-proof-bulk-queue.png'
 
 interface Product {
   name: string
@@ -107,7 +106,7 @@ const PHASE_GROUPS: PhaseGroup[] = [
           'Bulk content import from a spreadsheet',
           'Magic-link approvals, versioned and traceable',
         ],
-        images: [contentProofApprovalQueue],
+        images: [contentProofReviewQueue],
       },
       {
         name: 'Ad Proof',
@@ -128,7 +127,7 @@ const PHASE_GROUPS: PhaseGroup[] = [
           'Branded PDF exports',
           'Push approved Performance Max proofs straight to Google Ads',
         ],
-        images: [adProofReview, adProofBulkQueue],
+        images: [adProofReview],
       },
       {
         name: 'Conversion Pages',

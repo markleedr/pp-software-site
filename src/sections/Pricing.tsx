@@ -26,7 +26,7 @@ export function Pricing() {
       <div className="container">
         <Reveal>
           <h2 className="display text-black text-center text-4xl sm:text-5xl max-w-2xl mx-auto">
-            two ways to buy.
+            start with one tool. grow into the suite.
           </h2>
         </Reveal>
 
