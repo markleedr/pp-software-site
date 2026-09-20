@@ -39,7 +39,7 @@ export function ImageGallery({ images, alt }: ImageGalleryProps) {
             key={src}
             src={src}
             alt={`${alt} — screenshot${images.length > 1 ? ` ${i + 1}` : ''}`}
-            className="aspect-video w-full shrink-0 snap-start rounded-lg border border-border object-cover shadow-lg"
+            className="w-full h-auto shrink-0 snap-start rounded-lg border border-border shadow-lg"
           />
         ))}
       </div>

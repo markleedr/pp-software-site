@@ -67,7 +67,10 @@ lone thumbnail below both columns) left it orphaned, disconnected from the text 
 illustrates, with a large dead patch of whitespace next to it. `ImageGallery.tsx` renders
 one of three states from a product's `images` array: empty → a dashed-border "Screenshot
 coming soon" placeholder (never a fabricated screenshot — see below); one image → full
-column width, `aspect-video`, rounded corners, `shadow-lg` for presence; 2+ images → the
+column width, natural aspect ratio (`w-full h-auto`, no crop), rounded corners, `shadow-lg`
+for presence — an earlier version forced a fixed `aspect-video` box with `object-cover`,
+which cropped every screenshot since none of them are actually 16:9 (Mark flagged this;
+fixed); 2+ images → the
 same, in a horizontal scroll-snap filmstrip with left/right arrows. Launch Planner,
 Conversion Pages, Campaign Report, and Lead Reactivation use a "floating dashboard cards
 in a browser-chrome frame" mockup style (macOS traffic lights, address bar, individual UI
