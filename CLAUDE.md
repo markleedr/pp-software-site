@@ -247,22 +247,23 @@ deployment, check that in the dashboard before assuming the code is broken.
 4. **No downloadable asset yet.** Mark said his team will produce one (a sample report or
    similar) — there's nowhere on the page to link it to yet, add a download CTA once it
    exists.
-5. **TrustStrip: 5 of 11 projects now have real logos** (`src/assets/logos/`) — CPG
-   (Consolidated Properties Group), Stockwell, RV Lifestyle, Rhodes on Melbourne, Noosa
-   Civic. All five were trimmed with Pillow to their actual visible content (the source
-   files had wildly inconsistent baked-in padding — some near-zero, RV Lifestyle's had
-   almost half the canvas as whitespace above/below the mark — so a uniform bounding box on
-   the untrimmed originals produced wildly inconsistent visual sizes) and resized to a
-   160px-tall max before saving, then displayed at a uniform height with
-   `grayscale + opacity-75`, full colour on hover. The remaining 6 (Monarch Residences,
-   Bankside, Solana Lifestyle Resorts, Wira Neutral Bay, Bankside West End, 51 Fish Lane)
-   still show as plain text in the same strip — `TrustStrip.tsx`'s `PROJECTS` array makes
-   this an easy swap per-entry as more logos arrive. Two more images (Solana Lifestyle
-   Resorts, and a "Colliers" logo — not one of the original 11 projects, flagged to Mark,
-   unresolved) were sent inline in chat without a retrievable file path and couldn't be
-   saved; need a re-send as an upload/attachment or Drive link. Using a project's name or
-   logo publicly typically needs sign-off from whoever owns it — worth confirming before
-   this ships.
+5. **TrustStrip: all 9 remaining projects now have real logos** (`src/assets/logos/`) —
+   CPG (Consolidated Properties Group), Stockwell, RV Lifestyle, Rhodes on Melbourne, Noosa
+   Civic, Monarch Residences, Bankside, Solana Lifestyle Resorts, Wirra Neutral Bay. All
+   were trimmed with Pillow to their actual visible content (the source files had wildly
+   inconsistent baked-in padding — some near-zero, RV Lifestyle's had almost half the
+   canvas as whitespace above/below the mark, and the four latest arrived on solid
+   cream/white backgrounds that needed flood-fill transparency before trimming — so a
+   uniform bounding box on the untrimmed originals produced wildly inconsistent visual
+   sizes) and resized to a 160px-tall max before saving, then displayed at a uniform height
+   with `grayscale + opacity-75`, full colour on hover. "Bankside West End" and "51 Fish
+   Lane" were removed from the strip entirely — the Bankside logo supplied reads "Bankside
+   — the West End Way", confirming they were the same project under two names, not two
+   separate ones. "Wira Neutral Bay" is now spelled "Wirra Neutral Bay" (double R),
+   corrected against the real logo. The "Colliers" logo flagged in an earlier session (not
+   one of the original project list) is still unresolved — separate from this list, ask
+   Mark if it needs adding anywhere. Using a project's name or logo publicly typically needs
+   sign-off from whoever owns it — worth confirming before this ships.
 6. **No real product screenshots** in the expanded Phases sections — see the
    "Expanded product sections" note above for the plan (a single illustrative screenshot per
    tool, one fictional demo project, not real client data).

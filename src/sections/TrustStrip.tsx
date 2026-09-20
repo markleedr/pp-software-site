@@ -4,27 +4,30 @@ import stockwellLogo from '@/assets/logos/stockwell.png'
 import rvLifestyleLogo from '@/assets/logos/rv-lifestyle.png'
 import rhodesLogo from '@/assets/logos/rhodes-on-melbourne.png'
 import noosaCivicLogo from '@/assets/logos/noosa-civic.png'
+import monarchResidencesLogo from '@/assets/logos/monarch-residences.png'
+import banksideLogo from '@/assets/logos/bankside.png'
+import solanaLogo from '@/assets/logos/solana-lifestyle-resorts.png'
+import wiraNeutralBayLogo from '@/assets/logos/wira-neutral-bay.png'
 
 // Real projects, in the order Mark supplied them. Logos land here as Mark
 // sends them — entries without one yet fall back to plain text so nothing
-// disappears from the strip while it's a work in progress. Two more logos
-// (Solana Lifestyle Resorts, and a "Colliers" logo that wasn't on the
-// original project list — flagged, not yet added) arrived inline in chat
-// without a retrievable file path, so they couldn't be saved; re-send as an
-// upload/attachment to get them in.
+// disappears from the strip while it's a work in progress. "Bankside West
+// End" and "51 Fish Lane" were dropped: the Bankside logo Mark sent reads
+// "Bankside — the West End Way", confirming those were the same project
+// under two names, not two projects. "Wira Neutral Bay" is corrected to
+// "Wirra Neutral Bay" (double R) to match the real logo — the project list
+// had it misspelled.
 type Project = { name: string; logo?: string }
 
 const PROJECTS: Project[] = [
-  { name: 'Monarch Residences' },
+  { name: 'Monarch Residences', logo: monarchResidencesLogo },
   { name: 'CPG', logo: cpgLogo },
-  { name: 'Bankside' },
-  { name: 'Solana Lifestyle Resorts' },
+  { name: 'Bankside', logo: banksideLogo },
+  { name: 'Solana Lifestyle Resorts', logo: solanaLogo },
   { name: 'Stockwell', logo: stockwellLogo },
   { name: 'Rhodes on Melbourne', logo: rhodesLogo },
-  { name: 'Wira Neutral Bay' },
-  { name: 'Bankside West End' },
+  { name: 'Wirra Neutral Bay', logo: wiraNeutralBayLogo },
   { name: 'RV Lifestyle', logo: rvLifestyleLogo },
-  { name: '51 Fish Lane' },
   { name: 'Noosa Civic Shopping Centre', logo: noosaCivicLogo },
 ]
 
