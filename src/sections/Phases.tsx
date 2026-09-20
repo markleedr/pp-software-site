@@ -11,6 +11,7 @@ import {
 import { Reveal } from '@/components/Reveal'
 import { ButtonLink } from '@/components/Button'
 import { ImageGallery } from '@/components/ImageGallery'
+import campaignReportDashboard from '@/assets/screenshots/campaign-report-dashboard.webp'
 
 interface Product {
   name: string
@@ -20,9 +21,10 @@ interface Product {
   description: string
   benefits: string[]
   checklist: string[]
-  // No real product screenshots yet for any tool — see CLAUDE.md. Once
-  // Mark supplies them, drop the URLs in here and the gallery below
-  // renders automatically; empty stays hidden.
+  // No real product screenshots yet for most tools — see CLAUDE.md. Once
+  // Mark supplies one, drop the URL in here and the gallery below renders
+  // automatically; empty stays hidden. Each is the "Riverside Residences"
+  // fictional demo project, not real client data.
   images?: string[]
 }
 
@@ -164,6 +166,7 @@ const PHASE_GROUPS: PhaseGroup[] = [
           'Automated scheduling — weekly, monthly, quarterly',
           'Historical comparison and trends',
         ],
+        images: [campaignReportDashboard],
       },
     ],
   },

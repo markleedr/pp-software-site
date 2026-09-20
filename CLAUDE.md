@@ -60,14 +60,16 @@ Checklists stayed closer to literal feature/spec detail (that's their job) but w
 to match these corrected scopes. If a product's real copy changes on its own site, or the
 product itself changes, this page will drift out of sync until someone updates it here too.
 
-**Still missing: real product screenshots.** The agency reference page shows an actual UI
-mockup beside each product's text; this page uses an icon square instead, because
+**Real product screenshots — 1 of 6 tools done.** The agency reference page shows an actual
+UI mockup beside each product's text; this page used an icon square instead, because
 fabricating a screenshot with invented numbers would misrepresent the actual product.
 `src/components/ImageGallery.tsx` is a horizontal scroll-snap gallery (with left/right
 arrow buttons once there's more than one image) wired to each product's optional `images`
-array in `Phases.tsx` — it's built and ready but every product's array is currently empty,
-so nothing renders. Drop image URLs into a product's `images` array and the gallery appears
-automatically; no other change needed.
+array in `Phases.tsx`. Campaign Report now has its screenshot (the "Riverside Residences"
+fictional demo project); the other five products' arrays are still empty, so the gallery
+doesn't render for them yet. Drop an image into `src/assets/screenshots/`, import it, and
+add it to a product's `images` array and the gallery appears automatically; no other
+change needed.
 
 **Section rhythm:** don't put two centred, similarly-styled headline blocks back to back —
 Mark flagged an earlier version where the Phases section opened with its own big centred
@@ -286,6 +288,11 @@ deployment, check that in the dashboard before assuming the code is broken.
    one of the original project list) is still unresolved — separate from this list, ask
    Mark if it needs adding anywhere. Using a project's name or logo publicly typically needs
    sign-off from whoever owns it — worth confirming before this ships.
-6. **No real product screenshots** in the expanded Phases sections — see the
-   "Expanded product sections" note above for the plan (a single illustrative screenshot per
-   tool, one fictional demo project, not real client data).
+6. **Product screenshots: 1 of 6 tools done.** Campaign Report now has a real screenshot
+   (`src/assets/screenshots/campaign-report-dashboard.webp`, wired into its `images` array in
+   `Phases.tsx`) — the "Riverside Residences" fictional demo project, per the plan in
+   "Expanded product sections" above (illustrative, not real client data). The other five
+   tools (Launch Planner, Content Proof, Ad Proof, Conversion Pages, Lead Reactivation) still
+   have empty `images` arrays and show no gallery — same drop-in pattern once Mark supplies
+   a screenshot for each: save it under `src/assets/screenshots/`, import it in `Phases.tsx`,
+   add it to that product's `images` array.
