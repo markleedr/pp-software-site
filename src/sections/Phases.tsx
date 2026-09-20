@@ -286,7 +286,7 @@ export function Phases() {
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
                 Phase {phase.number}
               </p>
-              <h3 className="display mt-3 text-3xl sm:text-4xl max-w-3xl">{phase.headline}</h3>
+              <h3 className="display mt-3 text-3xl sm:text-4xl max-w-4xl">{phase.headline}</h3>
             </Reveal>
 
             <div className="mt-4 divide-y divide-border">
