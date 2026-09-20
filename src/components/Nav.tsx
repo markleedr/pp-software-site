@@ -1,6 +1,8 @@
 import AppSwitcher from './AppSwitcher'
 import { ButtonLink } from './Button'
 
+const DISCOVERY_URL = 'https://www.projectprofile.agency/discovery'
+
 export function Nav() {
   return (
     <header className="sticky top-0 inset-x-0 z-40 bg-white border-b border-border">
@@ -30,7 +32,15 @@ export function Nav() {
           </a>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
+          <a
+            href={DISCOVERY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Book a call
+          </a>
           <AppSwitcher />
           <ButtonLink href="#pricing" className="!px-5 !py-2 text-sm">
             Start a project

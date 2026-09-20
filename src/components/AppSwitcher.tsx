@@ -10,7 +10,7 @@ const TOOLS = [
     id: 'launch-planner',
     name: 'Launch Planner',
     tagline: 'Plan & scope',
-    url: 'https://www.projectbase.com.au',
+    url: 'https://launchplanner.com.au',
   },
   {
     id: 'conversion-pages',

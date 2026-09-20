@@ -15,23 +15,46 @@ marketing manager at a larger developer. The page leads with the marketing manag
 value, uses more of the suite) — the control/visibility promise serves the boutique developer
 too, they just read it differently.
 
-Page structure, in order: Hero → why (data ownership) → the four phases (six tools) →
-pricing. The full locked copy (and the reasoning behind the line breaks and the "every /
-every / one" rhythm) is in the session that built this — ask Mark if it needs to be
-retrieved, or treat the copy in `src/sections/*.tsx` as the source of truth going forward.
+Page structure, in order: Hero → trust strip → why (data ownership) → the four phases
+(six tools, each an expanded product section) → pricing. The hero/why/phase-headline copy
+is locked from an earlier round (the reasoning behind the line breaks and the "every /
+every / one" rhythm lives in the session that built this — ask Mark if it needs retrieving).
+The per-product description/benefits/checklist copy in `Phases.tsx` is **not** invented —
+it's pulled from Mark's own live sites (see "Expanded product sections" below) and should
+be treated as real until he says otherwise.
 
 **Layout/chrome deliberately matches the live sibling sites** (adproof.com.au,
-campaignreport.com.au, contentproof.com.au), not a literal reading of the brand guidelines
-PDF — Mark asked for this explicitly after seeing the first pass. Where the two disagree
-(pill buttons vs. the guideline's flat 6px radius; centered hero vs. asymmetric; a white
-sticky nav with a circular product badge instead of a transparent-over-hero one) the live
-sites win. What still comes from the brand guidelines: lowercase-with-period display
-headings, Montserrat, and yellow used sparingly as a single accent (except the solid yellow
-CTA band, which the guidelines explicitly allow as a marketing-surface treatment). See
-`Phases.tsx` for one small addition beyond the locked copy: a section-level headline
-("everything from launch to sale, in one suite.") above the card grid, added to match the
-sibling sites' pattern of a headline over their feature grid — cut or edit it if Mark
-didn't intend to reopen the copy.
+campaignreport.com.au, contentproof.com.au, and projectprofile.agency/software), not a
+literal reading of the brand guidelines PDF — Mark asked for this explicitly after seeing
+the first pass. Where the two disagree (pill buttons vs. the guideline's flat 6px radius;
+centered hero vs. asymmetric; a white sticky nav with a circular product badge instead of a
+transparent-over-hero one) the live sites win. What still comes from the brand guidelines:
+lowercase-with-period display headings, Montserrat, and yellow used sparingly as a single
+accent (except the solid yellow CTA band, which the guidelines explicitly allow as a
+marketing-surface treatment).
+
+### Expanded product sections (Phases.tsx)
+
+Each of the six tools gets its own full section — tagline, description, a "Key benefits"
+box, and a feature checklist — grouped under the four locked phase headlines (phase 2 holds
+three: Content Proof, Ad Proof, Conversion Pages). This replaced the original compact card
+grid after Mark pointed at `projectprofile.agency/software`'s expanded-section layout as the
+model to follow. The description/benefits/checklist text for Launch Planner, Conversion
+Pages, Campaign Report and Lead Reactivation is copied near-verbatim from that agency page;
+Content Proof's and Ad Proof's come from their own marketing sites (contentproof.com.au,
+adproof.com.au). None of it was written from scratch — if a product's real copy changes on
+its own site, this page will drift out of sync until someone updates it here too.
+
+**Still missing: real product screenshots.** The agency reference page shows an actual UI
+mockup beside each product's text; this page uses an icon square instead, because
+fabricating a screenshot with invented numbers would misrepresent the actual product. Swap
+in real screenshots when they're available.
+
+**One deliberate scope call:** Project Email is a real, live product (projectemail.com.au,
+marked "Coming Soon" on the agency page) but isn't included here — the agency page's own
+footer lists exactly the same six tools as this site's suite (Launch Planner, Conversion
+Pages, Campaign Report, Lead Reactivation, Ad Proof, Content Proof), so that's the
+confirmed current roster, not five or seven.
 
 **Out of scope, on purpose:** Media Schedule and Lead Sheet are not part of this suite.
 Managed Services (the done-for-you agency offer) isn't mentioned — this site sells software,
@@ -117,7 +140,7 @@ src/
   lib/
     utils.ts                     # cn() — clsx + tailwind-merge
   components/
-    Nav.tsx                      # sticky white nav — badge + name + links + AppSwitcher + CTA
+    Nav.tsx                      # sticky white nav — badge + name + links + Book a call + AppSwitcher + CTA
     AppSwitcher.tsx               # waffle menu — see "AppSwitcher" note below
     Button.tsx                    # shared pill button/link — variants: primary, onAccent
                                    # (white-on-yellow), outline, outlineOnDark; active:scale press feedback
@@ -125,9 +148,11 @@ src/
     Footer.tsx                    # plain light footer, matches sibling convention
   sections/
     Hero.tsx                      # centered, yellow underline accent under the headline
+    TrustStrip.tsx                 # "Used by" — 3 client names, plain text — see Known gaps
     WhyBlock.tsx                  # "stop renting access to your own data."
-    Phases.tsx                    # 2x2 white card grid (icon square + headline + body), data-driven from PHASES array
-    Pricing.tsx                   # solid yellow CTA band, $XXX placeholder — see Known gaps
+    Phases.tsx                    # six expanded product sections grouped under 4 phase headlines — see above
+    Pricing.tsx                   # "two ways to buy" — individually (link to #suite) vs. the
+                                   # full-suite bundle with a PM, $TBA — solid yellow CTA band
 ```
 
 ### AppSwitcher note
@@ -142,8 +167,17 @@ above. If that's wrong and Mark wants the universal 9-tool switcher instead, swa
 
 It also reads **"Launch Planner"** — confirmed and now renamed everywhere: Ad Proof's and
 Campaign Report's `AppSwitcher.tsx` (and vision-property-reports' `app-switcher-prompt.json`
-build spec) were updated to match in the same session. URL and internal id (`project-base`)
-are unchanged; only the label changed.
+build spec) were updated to match in the same session. Internal id (`project-base`) is
+unchanged; the label and the URL both changed — the tile now points at `launchplanner.com.au`
+(confirmed against the agency site's own nav), not the old `projectbase.com.au`, which was
+stale in all three repos' switchers until this session fixed it everywhere.
+
+### "Book a call"
+
+Nav and the Pricing bundle card both link to `https://www.projectprofile.agency/discovery`
+in a new tab — confirmed live (title "Book a Discovery Call | Project Profile") as the real
+scheduler, not a guess. It's the agency's own discovery-call booking page; there's no
+separate scheduler for the software suite specifically.
 
 ## Environment variables
 
@@ -173,7 +207,20 @@ deployment, check that in the dashboard before assuming the code is broken.
 
 ## Known gaps — confirm with Mark before this ships
 
-1. **Pricing shows `$XXX`** — the real figure was deliberately left as a placeholder.
+1. **Pricing shows `$XXX`** (individual tools) **and `$TBA`** (the full-suite bundle) — both
+   deliberately left as placeholders.
 2. **"Start a project" CTAs point nowhere real** (`#`, in-page anchors) — needs a real
-   contact flow: a form, a Calendly link, or an email address.
+   contact flow: a form, a Calendly link, or an email address. ("Book a call" is wired up
+   for real, to `/discovery` — this is specifically about the "Start a project" buttons.)
 3. **No custom domain attached in Vercel yet** — see Deployment above.
+4. **No downloadable asset yet.** Mark said his team will produce one (a sample report or
+   similar) — there's nowhere on the page to link it to yet, add a download CTA once it
+   exists.
+5. **TrustStrip shows client company names as plain text, not logos or specific projects.**
+   Recommended project names over company logos (matches the pattern already live on
+   `projectprofile.agency/discovery`, which lists specific projects — "Monarch Residences,"
+   "Ashbourne," etc. — not developer logos) but don't have real project names for
+   Consolidated Properties/Stockwell/RV Lifestyle to use, so it's just their company names
+   for now. Also worth noting: using a client's name publicly typically needs their sign-off
+   — confirm permission before this ships, whichever direction it goes.
+6. **No real product screenshots** in the expanded Phases sections — see the note above.
