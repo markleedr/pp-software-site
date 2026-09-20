@@ -16,6 +16,8 @@ import conversionPagesBuilder from '@/assets/screenshots/conversion-pages-builde
 import campaignReportInsights from '@/assets/screenshots/campaign-report-insights.png'
 import leadReactivationOutreach from '@/assets/screenshots/lead-reactivation-outreach.png'
 import contentProofApprovalQueue from '@/assets/screenshots/content-proof-approval-queue.png'
+import adProofReview from '@/assets/screenshots/ad-proof-review.png'
+import adProofBulkQueue from '@/assets/screenshots/ad-proof-bulk-queue.png'
 
 interface Product {
   name: string
@@ -126,6 +128,7 @@ const PHASE_GROUPS: PhaseGroup[] = [
           'Branded PDF exports',
           'Push approved Performance Max proofs straight to Google Ads',
         ],
+        images: [adProofReview, adProofBulkQueue],
       },
       {
         name: 'Conversion Pages',

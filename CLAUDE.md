@@ -60,7 +60,7 @@ Checklists stayed closer to literal feature/spec detail (that's their job) but w
 to match these corrected scopes. If a product's real copy changes on its own site, or the
 product itself changes, this page will drift out of sync until someone updates it here too.
 
-**Real product screenshots — 5 of 6 tools done; positioning fixed for all six.** The
+**Real product screenshots — all 6 of 6 tools done; positioning fixed for all six.** The
 screenshot/placeholder lives in the LEFT column, directly under each product's "More
 about X" button, not full-width below the whole section — the original placement (a
 lone thumbnail below both columns) left it orphaned, disconnected from the text it
@@ -68,19 +68,25 @@ illustrates, with a large dead patch of whitespace next to it. `ImageGallery.tsx
 one of three states from a product's `images` array: empty → a dashed-border "Screenshot
 coming soon" placeholder (never a fabricated screenshot — see below); one image → full
 column width, `aspect-video`, rounded corners, `shadow-lg` for presence; 2+ images → the
-same, in a horizontal scroll-snap filmstrip with left/right arrows. Five products now have
-real screenshots: Launch Planner, Conversion Pages, Campaign Report, and Lead Reactivation
-use a "floating dashboard cards in a browser-chrome frame" mockup style (macOS traffic
-lights, address bar, individual UI cards with their own shadows on a plain background) —
-Campaign Report's earlier real screenshot (a literal full in-app dashboard crop) was
-replaced with this style once Mark decided between the two options discussed in chat.
-Content Proof instead got a literal full in-app screenshot (dense, dark sidebar, no
-browser chrome) — visibly a different style from the other four; flagged to Mark, not
-resolved, purely a visual-consistency call, not a factual problem. Only Ad Proof still
-shows the placeholder. Same drop-in as before once its screenshot arrives: save under
-`src/assets/screenshots/`, import it in `Phases.tsx`, add it to that product's `images`
-array, no other change needed. Fabricating a screenshot with invented numbers would
-misrepresent the actual product — that's why every product got a placeholder rather than
+same, in a horizontal scroll-snap filmstrip with left/right arrows. Launch Planner,
+Conversion Pages, Campaign Report, and Lead Reactivation use a "floating dashboard cards
+in a browser-chrome frame" mockup style (macOS traffic lights, address bar, individual UI
+cards with their own shadows on a plain background) — Campaign Report's earlier real
+screenshot (a literal full in-app dashboard crop) was replaced with this style once Mark
+decided between the two options discussed in chat. Ad Proof got two screenshots in this
+same floating-card style (no browser chrome this time, just the cards) — a single-ad
+review modal and a bulk-approve queue view — added together as a 2-image gallery since
+they show different, complementary parts of the flow rather than competing takes on the
+same screen; Mark's instruction was "replace with the new image" (singular) so this is a
+judgment call worth flagging — if he only wanted one, dropping either import from
+`images: [adProofReview, adProofBulkQueue]` in `Phases.tsx` is a one-line change. Content
+Proof instead got a literal full in-app screenshot (dense, dark sidebar, no browser
+chrome) — visibly a different style from the other five; flagged to Mark, not resolved,
+purely a visual-consistency call, not a factual problem. Same drop-in pattern for any
+future replacement: save under `src/assets/screenshots/`, import it in `Phases.tsx`, add
+it to that product's `images` array, no other change needed. Fabricating a screenshot
+with invented numbers would misrepresent the actual product — that's why every product got
+a placeholder rather than
 a fake one while its real screenshot was pending.
 
 **Section rhythm:** don't put two centred, similarly-styled headline blocks back to back —
@@ -300,16 +306,19 @@ deployment, check that in the dashboard before assuming the code is broken.
    one of the original project list) is still unresolved — separate from this list, ask
    Mark if it needs adding anywhere. Using a project's name or logo publicly typically needs
    sign-off from whoever owns it — worth confirming before this ships.
-6. **Product screenshots: 5 of 6 tools done; every section shows something in that slot.**
-   Launch Planner, Conversion Pages, Campaign Report and Lead Reactivation all use the same
-   "floating dashboard cards in a browser-chrome frame" mockup style (`src/assets/screenshots/
-   launch-planner-dashboard.png`, `conversion-pages-builder.png`, `campaign-report-insights.png`,
-   `lead-reactivation-outreach.png`). Content Proof has a real screenshot too
+6. **Product screenshots: all 6 of 6 tools done.** Launch Planner, Conversion Pages,
+   Campaign Report and Lead Reactivation all use the same "floating dashboard cards in a
+   browser-chrome frame" mockup style (`src/assets/screenshots/launch-planner-dashboard.png`,
+   `conversion-pages-builder.png`, `campaign-report-insights.png`, `lead-reactivation-outreach.png`).
+   **Ad Proof shows two** (`ad-proof-review.png`, `ad-proof-bulk-queue.png`) in a 2-image
+   scroll-snap gallery — a single-ad review modal and a bulk-approve queue, added together
+   because they're different views rather than style alternatives. Mark's instruction
+   ("replace with the new image", singular) is ambiguous about whether he wanted one or
+   both — worth confirming; dropping one from `images: [adProofReview, adProofBulkQueue]`
+   in `Phases.tsx` is a one-line fix if so. **Content Proof** has a real screenshot too
    (`content-proof-approval-queue.png`) but in a visibly different style — a literal full
    in-app crop (dense, dark sidebar), not the browser-chrome/floating-card treatment the
    other four share. Worth asking Mark whether to redo it to match, or leave it — flagged,
-   not resolved, a consistency call rather than a correctness one. Only **Ad Proof** still
-   shows the "Screenshot coming soon" placeholder. Same drop-in pattern once it arrives:
-   save under `src/assets/screenshots/`, import it in `Phases.tsx`, add it to Ad Proof's
-   `images` array. See "Real product screenshots" above for the positioning fix (left
-   column, under the CTA button) that shipped alongside the first of these.
+   not resolved, a consistency call rather than a correctness one. See "Real product
+   screenshots" above for the positioning fix (left column, under the CTA button) that
+   shipped alongside the first of these.
