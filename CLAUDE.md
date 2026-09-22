@@ -67,11 +67,23 @@ lone thumbnail below both columns) left it orphaned, disconnected from the text 
 illustrates, with a large dead patch of whitespace next to it. `ImageGallery.tsx` renders
 one of three states from a product's `images` array: empty → a dashed-border "Screenshot
 coming soon" placeholder (never a fabricated screenshot — see below); one image → full
-column width, natural aspect ratio (`w-full h-auto`, no crop), rounded corners, `shadow-lg`
-for presence — an earlier version forced a fixed `aspect-video` box with `object-cover`,
-which cropped every screenshot since none of them are actually 16:9 (Mark flagged this;
-fixed); 2+ images → the
-same, in a horizontal scroll-snap filmstrip with left/right arrows. All six now use the
+column width, natural aspect ratio (`w-full h-auto`, no crop) — an earlier version forced
+a fixed `aspect-video` box with `object-cover`, which cropped every screenshot since none
+of them are actually 16:9 (Mark flagged this; fixed); 2+ images → the
+same, in a horizontal scroll-snap filmstrip with left/right arrows. The `<img>` itself now
+carries no border, background or shadow of its own (Mark flagged the visible "box" this
+made around every illustration) — each of the 6 PNGs had its flat outer canvas made
+transparent so the floating cards sit directly on the section's real background (white or
+muted grey) instead of inside a mismatched rectangle. That editing is not a simple
+"replace near-white with transparent": the canvas colour and the floating cards' own card
+backgrounds are often within 1–2 RGB values of each other (by design — the mockup style
+separates them with a shadow, not a colour contrast), so a naive flood fill from the image
+border leaks straight through card backgrounds into their text/buttons. The working method
+(a scratch Python/Pillow/scipy script, not checked into the repo) bounds the flood fill to
+a per-side margin — the gap between each edge and where real content starts on that side —
+so it can never travel past where a card begins, however close its colour is to the
+canvas's. Apply the same approach to any future screenshot in this style before adding it.
+All six now use the
 same "floating dashboard cards in a browser-chrome frame" mockup style (macOS traffic
 lights, address bar, individual UI cards with their own shadows on a plain background) —
 Launch Planner, Conversion Pages, Campaign Report, Lead Reactivation, Ad Proof (single

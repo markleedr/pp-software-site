@@ -10,6 +10,12 @@ interface ImageGalleryProps {
 // a clearly-marked placeholder (dashed border, no shadow) until then, so
 // half the products don't look finished and half don't. Never a fabricated
 // screenshot — see CLAUDE.md on real vs. invented product data.
+//
+// Real screenshots render with no border/background/shadow of their own —
+// each PNG has its flat outer canvas made transparent (see CLAUDE.md), so
+// the illustration's floating cards sit directly on the section's actual
+// background instead of inside a visible box. The placeholder keeps its
+// own dashed box since it's a deliberate empty-state, not an illustration.
 export function ImageGallery({ images, alt }: ImageGalleryProps) {
   const trackRef = useRef<HTMLDivElement>(null)
 
@@ -39,7 +45,7 @@ export function ImageGallery({ images, alt }: ImageGalleryProps) {
             key={src}
             src={src}
             alt={`${alt} — screenshot${images.length > 1 ? ` ${i + 1}` : ''}`}
-            className="w-full h-auto shrink-0 snap-start rounded-lg border border-border shadow-lg"
+            className="w-full h-auto shrink-0 snap-start"
           />
         ))}
       </div>
