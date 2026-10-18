@@ -1,0 +1,8 @@
+# Only the settings this workstream needs. Both functions validate their own
+# input (the browser sends a publishable key, which is not a JWT; Stripe signs
+# the webhook), so the gateway JWT check is off.
+[functions.create-checkout]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false

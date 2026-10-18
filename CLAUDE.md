@@ -195,6 +195,8 @@ rather than this summary.
 
 ```
 src/
+  main.tsx                       # picks App, /get-started or /get-started/success by pathname
+  pages/                         # Onboarding wizard + success page
   App.tsx                        # assembles the page: Nav, Hero, WhyBlock, Phases, Pricing, Footer
   index.css                      # brand CSS variable tokens (Surface A) + .display utility
   lib/
@@ -245,6 +247,23 @@ in a new tab — confirmed live (title "Book a Discovery Call | Project Profile"
 scheduler, not a guess. It's the agency's own discovery-call booking page; there's no
 separate scheduler for the software suite specifically.
 
+## Self-serve onboarding (`/get-started`) — draft
+
+Click-to-select flow: plan (Self-serve / Platform / Done for you) → projects and stage →
+services → review, sign and pay. Live price throughout; generated agreement with typed
+e-signature; Stripe Checkout; webhook provisions account + first project + Owner invite.
+
+- `supabase/functions/_shared/pricing.config.ts` is the ONLY place prices live (all placeholders).
+  The browser and the Edge Functions both import it, so deploy both after editing.
+- `_shared/` is pure TypeScript (no Deno or browser APIs) so Vitest runs it: `bun run test`.
+- `create-checkout` recomputes the price server-side, stores the signed agreement + SHA-256,
+  returns a Stripe Checkout URL. `stripe-webhook` verifies the signature, de-duplicates by
+  event id, provisions via `_shared/provision.ts`, and keeps `subscriptions` in step.
+- `subscriptions` (plan, project_limit, status) is the contract other workstreams read.
+- Migration: `supabase/migrations/20261018000000_onboarding_subscriptions.sql`. Not applied to any database.
+- Server secrets (Supabase Edge Function secrets): `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`,
+  `SITE_URL`, `ALLOWED_ORIGINS`, optional `STRIPE_AUTOMATIC_TAX`, `INVITE_REDIRECT_URL`.
+
 ## Environment variables
 
 ```
@@ -289,9 +308,9 @@ deployment, check that in the dashboard before assuming the code is broken.
    for you by a project manager" framing was wrong (it also read as the Managed Services
    offer, which this site deliberately never mentions — software, not services) and has
    been replaced.
-2. **"Start a project" CTAs point nowhere real** (`#`, in-page anchors) — needs a real
-   contact flow: a form, a Calendly link, or an email address. ("Book a call" is wired up
-   for real, to `/discovery` — this is specifically about the "Start a project" buttons.)
+2. **"Start a project" CTAs now go to `/get-started`** (self-serve onboarding, see below).
+   It is a draft: placeholder prices, unreviewed agreement wording, and nothing is deployed
+   or wired to a live Stripe account yet.
 3. **No custom domain attached in Vercel yet** — see Deployment above.
 4. **No downloadable asset yet.** Mark said his team will produce one (a sample report or
    similar) — there's nowhere on the page to link it to yet, add a download CTA once it

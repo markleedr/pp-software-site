@@ -73,8 +73,7 @@ export function Pricing() {
                 ${INDIVIDUAL_TOTAL - BUNDLE_PRICE} less than buying them separately (from ${INDIVIDUAL_TOTAL.toLocaleString()}/mo)
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                {/* TODO: point at the real contact flow once Mark confirms it. */}
-                <ButtonLink href="#" variant="primary">
+                <ButtonLink href="/get-started" variant="primary">
                   Start a project
                 </ButtonLink>
                 <ButtonLink href={DISCOVERY_URL} target="_blank" rel="noopener noreferrer" variant="outlineOnDark">

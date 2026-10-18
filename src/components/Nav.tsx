@@ -42,7 +42,7 @@ export function Nav() {
             Book a call
           </a>
           <AppSwitcher />
-          <ButtonLink href="#pricing" className="!px-5 !py-2 text-sm">
+          <ButtonLink href="/get-started" className="!px-5 !py-2 text-sm">
             Start a project
           </ButtonLink>
         </div>
